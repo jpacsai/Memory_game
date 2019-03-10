@@ -1,1 +1,1 @@
-export const ACTION_NAME = 'ACTION_NAME';
+export const RESOLVE_CARDS = 'RESOLVE_CARDS';
