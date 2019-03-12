@@ -1,3 +1,16 @@
 .Deck {
-  
+  padding: 2vh 0;
+  width: 100%;
+  background-color: yellow;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .card-grid {
+    width: 100%;
+    display: grid;
+    grid-template: repeat(4, 22%) / repeat(4, 22%);
+    gap: 2% 2%;
+    justify-content: center;
+  }
 }

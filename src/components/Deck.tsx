@@ -1,16 +1,34 @@
 import React from 'react';
-import Card from './Card';
+import { connect } from 'react-redux';
+import { State } from '../store';
+import { Card as CardType } from '../types'
+import { getDeck } from '../store/selectors'
+
+import CardComponent from './CardComponent';
 import './Deck.scss';
 
-class Deck extends React.PureComponent {
+export type DeckProps = {
+  deck: CardType[]
+}
+
+const mapStateToProps = (state: State) => ({
+  deck: getDeck(state) as CardType[]
+})
+
+class Deck extends React.PureComponent<DeckProps> {
   render() {
+    const { deck } = this.props;
+    if (!deck) return null;
     return (
       <div className="Deck">
-        <h2>'Deck'</h2>
-        <Card />
+        <div className="card-grid">
+        { deck.map((card, i) => (
+          <CardComponent key={i} card={card}/>
+        ))}
+        </div>
       </div>
     );
   }
 }
 
-export default Deck;
+export default connect(mapStateToProps,null)(Deck);
