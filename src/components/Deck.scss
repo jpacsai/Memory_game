@@ -12,5 +12,16 @@
     grid-template: repeat(4, 22%) / repeat(4, 22%);
     gap: 2% 2%;
     justify-content: center;
+    align-content: center;
+
+    @media screen and (orientation:portrait) {
+      max-height: 70vh;
+      max-width: 70vh;
+    }
+  
+    @media screen and (orientation:landscape) {
+      max-height: 85vh;
+      max-width: 85vh;
+    }
   }
 }

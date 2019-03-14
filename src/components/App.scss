@@ -4,7 +4,44 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80vw;
+  justify-content: center;
+  width: 90vw;
   height: 96vh;
-  background-color: teal;
+  background-color: lightcyan;
+
+  .title {
+    height: 6vh;
+    background-color: bisque;
+    margin: 4vh 0;
+  }
+
+  .game-container {
+    display: flex;
+    height: 90vh;
+    width: 100%;
+
+    @media screen and (orientation:portrait) {
+      flex-direction: column;
+      background-color: teal;
+    }
+  
+    @media screen and (orientation:landscape) {
+      flex-direction: row;
+      background-color: red;
+    }
+  }
+
+  footer {
+    background-color: pink;
+    display: block;
+
+    @media screen and (orientation:portrait) {
+      height: 0;
+    }
+  
+    @media screen and (orientation:landscape) {
+      width: 15vw;
+      background-color: black;
+    }
+  }
 }

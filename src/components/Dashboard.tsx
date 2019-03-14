@@ -4,9 +4,7 @@ import './Dashboard.scss';
 class Dashboard extends React.PureComponent {
   render() {
     return (
-      <div className="Dashboard">
-        'Dashboard'
-      </div>
+      <div className="Dashboard" />
     );
   }
 }

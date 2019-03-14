@@ -20,9 +20,12 @@ class App extends React.PureComponent<AppProps> {
   render() {
     return (
       <div className="App">
-        <h1>Memory Game</h1>
-        <Dashboard />
-        <Deck />
+        <h1 className="title">Memory Game</h1>
+        <div className="game-container">
+          <Dashboard />
+          <Deck />
+          <footer />
+        </div>
       </div>
     );
   }
