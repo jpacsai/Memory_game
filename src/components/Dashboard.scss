@@ -1,17 +1,15 @@
 .Dashboard {
-  background-color: orange;
-  margin-bottom: 5vh;
-
   @media screen and (orientation:portrait) {
-    height: 4rem;
     width: 100%;
-    flex-direction: column;
+    height: 4rem;
+    margin-bottom: 5vh;
     background-color: brown;
   }
 
   @media screen and (orientation:landscape) {
     width: 15vw;
-    flex-direction: row;
+    height: 100%;
+    margin: 0;
     background-color: red;
   }
 }

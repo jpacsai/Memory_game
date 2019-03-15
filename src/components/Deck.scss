@@ -1,27 +1,53 @@
 .Deck {
-  padding: 2vh 0;
   width: 100%;
-  background-color: yellow;
+  height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  background-color: yellow;  
 
-  .card-grid {
-    width: 100%;
-    display: grid;
-    grid-template: repeat(4, 22%) / repeat(4, 22%);
-    gap: 2% 2%;
+  @media screen and (orientation:portrait) {
+    flex-direction: column;
+    padding-top: 5vh;
+  }
+
+  @media screen and (orientation:landscape) {
+    flex-direction: row;
+    align-items: center;
     justify-content: center;
-    align-content: center;
-
+  }
+  
+  .grid-container {
     @media screen and (orientation:portrait) {
-      max-height: 70vh;
-      max-width: 70vh;
+      position: relative;
+      padding-bottom: 100%;
     }
   
     @media screen and (orientation:landscape) {
-      max-height: 85vh;
-      max-width: 85vh;
+      width: 100%;
+      height: 100%;
+      max-width: 80vh;
+      max-height: 80vh;
+    }
+
+    .card-grid {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      display: grid;
+      align-content: center;
+      justify-content: center;
+      grid-template: repeat(4, 22%) / repeat(4, 22%);
+      grid-gap: 2% 2%;
+      
+      @media screen and (orientation:portrait) {
+        max-width: 70vh;
+        max-height: 70vh;
+      }
+    
+      @media screen and (orientation:landscape) {
+        max-width: 80vh;
+        max-height: 80vh;
+      }
     }
   }
+
 }
