@@ -1,5 +1,5 @@
 import { Cards } from '../types';
-import cardImages from './../cardImages';
+import { cardImages } from '../config';
 
 export default (cardName: string) => {
   const images = cardImages.find((image: Cards) => image.name === cardName);

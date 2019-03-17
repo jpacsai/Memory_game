@@ -1,6 +1,6 @@
 import { Cards } from './types';
 
-const cardImages = [
+export const cardImages = [
   {
     name: "fruits",
     images: [
@@ -46,6 +46,4 @@ const cardImages = [
       }
     ]
   }
-];
-
-export default cardImages as Cards[];
+] as Cards[];
