@@ -1,6 +1,6 @@
 export type Cards = {
   name: string;
-  images: Card[];
+  images: string[];
 }
 
 export type Card = {
