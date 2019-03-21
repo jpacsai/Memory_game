@@ -1,9 +1,21 @@
 .CardComponent {
-  padding: 1rem;
-  background-color: white;
-  border-radius: 10%;
+  > .card-container {
+    padding: 1rem;
+    background-color: black;
+    border-radius: 10%;
 
-  > img {
-    height: 100%;
+    > img {
+      height: 100%;
+    }
+  }
+
+  & .open {
+    background-color: white;
+    pointer-events: none;
+  }
+
+  & .matched {
+    background-color: green;
+    pointer-events: none;
   }
 }
