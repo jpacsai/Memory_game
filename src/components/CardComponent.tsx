@@ -4,11 +4,11 @@ import { State } from "../store";
 import classnames from 'classnames';
 import { Card as CardType } from '../types';
 import { getOpenCards, getMatchedCards } from './../store/selectors';
+
 import './CardComponent.scss';
 
 export type CardComponentProps = {
   card: CardType;
-  onClick: any;
   openCards: number[];
   matchedCards: number[];
 }
@@ -19,13 +19,33 @@ const mapStateToProps = (state: State) => ({
 });
 
 class CardComponent extends React.PureComponent<CardComponentProps> {
-  handleClick = () => this.props.onClick(this.props.card.id);
+  timer: NodeJS.Timeout | null = null;
+
+  handleClick = () => {
+    
+  }
+
+  checkMatch = () => {
+
+  }
+
+  handleMatch = () => {
+
+  }
+
+  handleNoMatch = () => {
+
+  }
+
+  removeOpen = () => {
+
+  }
 
   render() {
     const { card, openCards, matchedCards } = this.props;
+    if (!card) return null;
     const open = openCards.includes(card.id);
     const matched = matchedCards.includes(card.id);
-    if (!card) return null;
     return (
       <div className={"CardComponent"} >
         <div
