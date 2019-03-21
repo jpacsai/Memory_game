@@ -1,26 +1,36 @@
 import React from "react";
+import { connect } from "react-redux";
+import { State } from "../store";
 import classnames from 'classnames';
 import { Card as CardType } from '../types';
+import { getOpenCards, getMatchedCards } from './../store/selectors';
 import './CardComponent.scss';
 
 export type CardComponentProps = {
   card: CardType;
-  open: boolean;
-  matched: boolean;
   onClick: any;
+  openCards: number[];
+  matchedCards: number[];
 }
+
+const mapStateToProps = (state: State) => ({
+  openCards: getOpenCards(state),
+  matchedCards: getMatchedCards(state)
+});
 
 class CardComponent extends React.PureComponent<CardComponentProps> {
   handleClick = () => this.props.onClick(this.props.card.id);
 
   render() {
-    const { card } = this.props;
+    const { card, openCards, matchedCards } = this.props;
+    const open = openCards.includes(card.id);
+    const matched = matchedCards.includes(card.id);
     if (!card) return null;
     return (
       <div className={"CardComponent"} >
         <div
           onClick={this.handleClick}
-          className={classnames('card-container', this.props.open ? 'open' : this.props.matched ? 'matched' : '')}
+          className={classnames('card-container', open ? 'open' : matched ? 'matched' : '')}
          >
           <img src={card.url} alt=""/>
         </div>
@@ -29,4 +39,4 @@ class CardComponent extends React.PureComponent<CardComponentProps> {
   }
 }
 
-export default CardComponent;
+export default connect(mapStateToProps, null)(CardComponent);
