@@ -26,8 +26,8 @@ class CardComponent extends React.PureComponent<CardComponentProps> {
   timer: NodeJS.Timeout | null = null;
 
   handleClick = () => {
-    const { card } = this.props;
-    this.props.handleOpenCard(card.id);
+    const { card, openCards } = this.props;
+    if (openCards.length < 2) this.props.handleOpenCard(card.id);
   }
 
   render() {

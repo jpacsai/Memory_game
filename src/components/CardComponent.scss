@@ -9,13 +9,17 @@
     }
   }
 
-  & .open {
-    background-color: white;
+  .disable-click {
     pointer-events: none;
   }
 
+  & .open {
+    @extend .disable-click;
+    background-color: white;
+  }
+
   & .matched {
+    @extend .disable-click;
     background-color: green;
-    pointer-events: none;
   }
 }
