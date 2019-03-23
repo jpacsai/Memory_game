@@ -1,7 +1,7 @@
 import { Action } from "redux";
 import { ExtraArguments, State } from "./";
 import { Card } from '../types';
-import { resolveDeck, resolveOpenCard, resolveMatchedCards, closeOpenCards } from "./actionCreators";
+import { resolveDeck, resolveOpenCard, resolveMatchedCards, closeOpenedCards } from "./actionCreators";
 import createFullDeck from "../utils/createDeck";
 import shuffle from "../utils/shuffle";
 import fetchCardImages from "./../utils/fetchCardImages";
@@ -50,10 +50,10 @@ export const checkMatch = (cardIDs: number[]): Thunk => (dispatch, getState) => 
 }
 
 export const handleMatch = (cardIDs: number[]): Thunk => (dispatch, getState) => {
-  dispatch(closeOpenCards());
+  dispatch(closeOpenedCards());
   dispatch(resolveMatchedCards(cardIDs));
 }
 
 export const handleNoMatch = (): Thunk => (dispatch, getState) => {
-  dispatch(delayAction(closeOpenCards(), 1000));
+  dispatch(delayAction(closeOpenedCards(), 1000));
 }
