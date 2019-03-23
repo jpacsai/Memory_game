@@ -22,23 +22,7 @@ class CardComponent extends React.PureComponent<CardComponentProps> {
   timer: NodeJS.Timeout | null = null;
 
   handleClick = () => {
-    
-  }
-
-  checkMatch = () => {
-
-  }
-
-  handleMatch = () => {
-
-  }
-
-  handleNoMatch = () => {
-
-  }
-
-  removeOpen = () => {
-
+    // checkOpenCard
   }
 
   render() {

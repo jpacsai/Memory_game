@@ -16,7 +16,7 @@ export const fetchInitData = (): Thunk => (dispatch, getState) => {
   dispatch(createDefaultDeck(defaultCards));
 };
 
-export const createDefaultDeck = (cardName: string): Thunk => (dispatch,getState) => {
+export const createDefaultDeck = (cardName: string): Thunk => (dispatch, getState) => {
   try {
     const images = fetchCardImages(cardName);
     const fullDeck = createFullDeck(images.images);
@@ -26,3 +26,24 @@ export const createDefaultDeck = (cardName: string): Thunk => (dispatch,getState
     console.log(error);
   }
 };
+/* 
+export const checkOpenCard = (cardID: number): Thunk => (dispatch, getState) {
+  // resolve card
+  // 2 cards ? checkMatch
+}
+
+export const checkMatch = (cardID: number): Thunk => (dispatch, getState) {
+  // dispatch(handleMatch());
+  // dispatch(handleNoMatch());
+}
+
+export const handleMatch = () => {
+  // resolve cards []
+  // match animation
+  // move to matchedCards
+}
+
+export const handleNoMatch = () => {
+  // no match animation
+  // resolve cards []
+} */
