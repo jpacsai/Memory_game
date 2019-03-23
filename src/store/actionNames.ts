@@ -1,5 +1,4 @@
-export const RESOLVE_CARDS = 'RESOLVE_CARDS';
-export const RESOLVE_CARD = 'RESOLVE_CARD';
+export const RESOLVE_DECK = 'RESOLVE_DECK';
 export const OPEN_CARD = 'OPEN_CARD';
 export const CLOSE_CARDS = 'CLOSE_CARDS';
 export const MATCHED_CARDS = 'MATCHED_CARDS';

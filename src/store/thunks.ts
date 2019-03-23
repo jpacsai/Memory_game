@@ -1,6 +1,6 @@
 import { Action } from "redux";
 import { ExtraArguments, State } from "./";
-import { resolveCards } from "./actionCreators";
+import { resolveDeck } from "./actionCreators";
 import createFullDeck from "../utils/createDeck";
 import shuffle from "../utils/shuffle";
 import fetchCardImages from "./../utils/fetchCardImages";
@@ -21,7 +21,7 @@ export const createDefaultDeck = (cardName: string): Thunk => (dispatch, getStat
     const images = fetchCardImages(cardName);
     const fullDeck = createFullDeck(images.images);
     const shuffledDeck = shuffle(fullDeck);
-    dispatch(resolveCards(shuffledDeck));
+    dispatch(resolveDeck(shuffledDeck));
   } catch (error) {
     console.log(error);
   }

@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import cards from './cards';
+import deck from './deck';
 import openCards from './openCards';
 import matchedCards from './matchedCards';
 
 export default combineReducers({
-  cards,
+  deck,
   openCards,
   matchedCards
 });
