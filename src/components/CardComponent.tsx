@@ -4,6 +4,7 @@ import { State } from "../store";
 import classnames from 'classnames';
 import { Card as CardType } from '../types';
 import { getOpenCards, getMatchedCards } from './../store/selectors';
+import { handleOpenCard } from '../store/actions';
 
 import './CardComponent.scss';
 
@@ -11,6 +12,7 @@ export type CardComponentProps = {
   card: CardType;
   openCards: number[];
   matchedCards: number[];
+  handleOpenCard: typeof handleOpenCard;
 }
 
 const mapStateToProps = (state: State) => ({
@@ -18,11 +20,14 @@ const mapStateToProps = (state: State) => ({
   matchedCards: getMatchedCards(state)
 });
 
+const mapDispatchToProps = { handleOpenCard };
+
 class CardComponent extends React.PureComponent<CardComponentProps> {
   timer: NodeJS.Timeout | null = null;
 
   handleClick = () => {
-    // checkOpenCard
+    const { card } = this.props;
+    this.props.handleOpenCard(card.id);
   }
 
   render() {
@@ -43,4 +48,4 @@ class CardComponent extends React.PureComponent<CardComponentProps> {
   }
 }
 
-export default connect(mapStateToProps, null)(CardComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(CardComponent);
