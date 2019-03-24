@@ -1,18 +1,26 @@
 import React from 'react';
 import { connect } from "react-redux";
+import { State } from "../store";
+import { getMoves } from './../store/selectors';
 import { restart } from '../store/actions';
 
 import './DashboardButtons.scss';
 
 export type DashboardButtonsProps = {
+  moves: number;
   restart: typeof restart;
 }
+
+const mapStateToProps = (state: State) => ({
+  moves: getMoves(state)
+});
 
 const mapDispatchToProps = { restart };
 
 class DashboardButtons extends React.PureComponent<DashboardButtonsProps> {
   handleRestart = () => {
-    this.props.restart();
+    const { moves, restart } = this.props;
+    if (!!moves) restart();
   }
 
   render() {
@@ -29,4 +37,4 @@ class DashboardButtons extends React.PureComponent<DashboardButtonsProps> {
   }
 }
 
-export default connect(null, mapDispatchToProps)(DashboardButtons);
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardButtons);
