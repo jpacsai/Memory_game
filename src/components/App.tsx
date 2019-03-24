@@ -24,7 +24,6 @@ class App extends React.PureComponent<AppProps> {
         <div className="game-container">
           <Dashboard />
           <Deck />
-          <footer />
         </div>
       </div>
     );
