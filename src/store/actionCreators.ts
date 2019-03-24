@@ -7,4 +7,4 @@ export const resolveOpenCard = (card: number) => action(actionNames.OPEN_CARD, c
 export const closeOpenedCards = () => action(actionNames.CLOSE_CARDS);
 export const resolveMatchedCards = (cards: number[]) => action(actionNames.MATCHED_CARDS, cards);
 export const resolveMove = () => action(actionNames.RESOLVE_MOVE);
-export const clear = () => action(actionNames.CLEAR);
+export const restart = () => action(actionNames.CLEAR);
