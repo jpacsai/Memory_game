@@ -10,10 +10,10 @@ class Dashboard extends React.PureComponent {
   render() {
     return (
       <div className="Dashboard">
+        <DashboardButtons />
         <Timer />
         <Stars />
         <Moves />
-        <DashboardButtons />
       </div>
     );
   }
