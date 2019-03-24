@@ -1,7 +1,14 @@
 import { Action } from 'redux';
 import { ExtraArguments, State } from './';
 import { Card } from '../types';
-import { resolveDeck, resolveOpenCard, resolveMatchedCards, closeOpenedCards, resolveMove } from './actions';
+import {
+  resolveDeck,
+  resolveOpenCard,
+  resolveMatchedCards,
+  closeOpenedCards,
+  resolveMove,
+  clear
+} from './actions';
 import createFullDeck from '../utils/createDeck';
 import shuffle from '../utils/shuffle';
 import fetchCardImages from './../utils/fetchCardImages';
@@ -38,6 +45,12 @@ export const createDefaultDeck = (cardName: string): Thunk => (dispatch, getStat
 export const shuffleDeck = (deck: Card[]): Thunk => (dispatch, getState) => {
   const shuffledDeck = shuffle(deck);
   dispatch(resolveDeck(shuffledDeck));
+}
+
+export const restart = (): Thunk => (dispatch, getState) => {
+  dispatch(clear());
+  const deck = getDeck(getState()) as Card[];
+  dispatch(shuffleDeck(deck));
 }
 
 export const handleOpenCard = (cardID: number): Thunk => (dispatch, getState) => {
