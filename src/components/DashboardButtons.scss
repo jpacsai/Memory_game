@@ -1,3 +1,26 @@
 .DashboardButtons {
   background-color: lightskyblue;
+  padding: 10%;
+  display: grid;
+  grid-gap: 0.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(2.5rem, 1fr));
+
+  .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .button:hover {
+    color: blue;
+  }
+
+  .pause-button {
+    @extend .button;
+  }
+
+  .restart-button {
+    @extend .button;
+  }
 }
