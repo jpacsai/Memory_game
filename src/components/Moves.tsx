@@ -14,8 +14,10 @@ const mapStateToProps = (state: State) => ({
 
 class Moves extends React.PureComponent<MovesProps> {
   render() {
+    const { moves } = this.props;
+    
     return (
-      <div className='Moves'>{this.props.moves}</div>
+      <div className='Moves'>{`${moves} Move${moves > 1 ? 's' : ''}`}</div>
     )
   }
 }
