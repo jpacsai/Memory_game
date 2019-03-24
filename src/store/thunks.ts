@@ -68,7 +68,7 @@ export const checkMatch = (cardIDs: number[]): Thunk => (dispatch, getState) => 
 };
 
 export const handleMatch = (cardIDs: number[]): Thunk => (dispatch, getState) => {
-  dispatch(closeOpenedCards());
+  dispatch(delayAction(closeOpenedCards(), 500));
   dispatch(resolveMatchedCards(cardIDs));
 };
 
