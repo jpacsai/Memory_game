@@ -1,15 +1,31 @@
 .DashboardButtons {
   background-color: lightskyblue;
-  padding: 10%;
-  display: grid;
-  grid-gap: 0.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(2.5rem, 1fr));
+
+  @media screen and (orientation:portrait) {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  @media screen and (orientation:landscape) {
+    padding: 10%;
+    display: grid;
+    grid-gap: 0.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(2.5rem, 1fr));
+  }
 
   .button {
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    
+    > i {
+      min-width: 60px;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   .button:hover {

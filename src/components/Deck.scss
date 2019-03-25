@@ -10,23 +10,23 @@
   }
 
   @media screen and (orientation:landscape) {
-    padding-right: 15vw;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    padding-right: 15vw;
   }
   
   .grid-container {
+    position: relative;
+    
     @media screen and (orientation:portrait) {
       width: 65vh;
       max-width: 90vw;
-      position: relative;
     }
   
     @media screen and (orientation:landscape) {
       width: 85%;
       max-width: 80vh;
-      position: relative;
     }
 
     .card-grid {

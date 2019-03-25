@@ -1,16 +1,28 @@
 .Dashboard {
   font-size: 2rem;
-  
+
   @media screen and (orientation:portrait) {
     width: 100%;
-    height: 4rem;
-    margin-bottom: 5vh;
+    display: grid;
+    direction: rtl;
     background-color: brown;
   }
 
+  @media screen and (max-width: 450px) and (orientation:portrait) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  
+  @media screen and (min-width: 451px) and (orientation:portrait) {
+    height: 6rem;
+    padding: 2vh 0;
+    grid-template-columns: minmax(120px, 1fr) minmax(5rem, 1fr) minmax(120px, 1fr);
+  }
+
+
   @media screen and (orientation:landscape) {
-    min-width: 15vw;
     height: 100%;
+    min-width: 15vw;
     margin: 0;
     background-color: red;
   }
