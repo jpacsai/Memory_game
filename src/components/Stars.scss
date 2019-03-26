@@ -7,4 +7,10 @@
     font-size: 1.5rem;
     line-height: 1.5rem;
   }
+
+  @media screen and (orientation:landscape) {
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+  }
 }

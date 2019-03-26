@@ -14,8 +14,11 @@
   }
 
   @media screen and (orientation:landscape) {
+    display: flex;
+    flex-direction: column;
     height: 100%;
     min-width: 15vw;
+    max-width: 15vw;
     margin: 0;
     background-color: red;
   }

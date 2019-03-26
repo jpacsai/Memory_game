@@ -11,14 +11,25 @@
     grid-column: 3 / 4;
     flex-direction: column;
   }
+
+  @media screen and (orientation:landscape) {
+    display: flex;
+    flex-direction: column;
+  }
   
   .move-counter {
-    // grid-column: 2 / 4;
     direction: initial;
     font-size: 1.6rem;
+    text-align: center;
 
     @media screen and (min-width: 451px) and (orientation:portrait) {
       font-size: 2rem;
+    }
+
+    @media screen and (orientation:landscape) {
+      min-height: 60px;
+      display: flex;
+      align-items: center;
     }
   }
 }
