@@ -4,15 +4,14 @@
   width: 100%;
   display: grid;
   direction: rtl;
-  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   
   @media screen and (min-width: 451px) and (orientation:portrait) {
     height: 6rem;
-    padding: 2vh 0;
+    grid-template-rows: 1fr;
     grid-template-columns: minmax(120px, 1fr) minmax(5rem, 1fr) minmax(120px, 1fr);
   }
-
 
   @media screen and (orientation:landscape) {
     height: 100%;

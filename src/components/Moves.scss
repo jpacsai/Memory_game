@@ -6,8 +6,19 @@
   justify-content: space-evenly;
   flex-direction: row-reverse;
   background-color: lightcoral;
+
+  @media screen and (min-width: 451px) and (orientation:portrait) {
+    grid-column: 3 / 4;
+    flex-direction: column;
+  }
   
   .move-counter {
     // grid-column: 2 / 4;
+    direction: initial;
+    font-size: 1.6rem;
+
+    @media screen and (min-width: 451px) and (orientation:portrait) {
+      font-size: 2rem;
+    }
   }
 }

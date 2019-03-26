@@ -3,5 +3,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 1.6rem;
   background-color: aqua;
+
+  @media screen and (min-width: 451px) and (orientation:portrait) {
+    font-size: 2rem;
+  }
 }
