@@ -1,12 +1,13 @@
 .Moves {
-  min-width: 8.5rem;
+  grid-column: 2 / 4;
+  // min-width: 8.5rem;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: space-evenly;
+  flex-direction: row-reverse;
   background-color: lightcoral;
-
+  
   .move-counter {
-    height: 2rem;
-    text-align: center;
+    // grid-column: 2 / 4;
   }
 }

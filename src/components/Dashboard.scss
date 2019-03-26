@@ -1,17 +1,11 @@
 .Dashboard {
   font-size: 2rem;
-
-  @media screen and (orientation:portrait) {
-    width: 100%;
-    display: grid;
-    direction: rtl;
-    background-color: brown;
-  }
-
-  @media screen and (max-width: 450px) and (orientation:portrait) {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-  }
+  background-color: brown;
+  width: 100%;
+  display: grid;
+  direction: rtl;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   
   @media screen and (min-width: 451px) and (orientation:portrait) {
     height: 6rem;
