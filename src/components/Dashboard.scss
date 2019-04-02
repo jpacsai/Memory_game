@@ -1,25 +1,39 @@
 .Dashboard {
-  font-size: 2rem;
-  background-color: brown;
-  width: 100%;
-  display: grid;
-  direction: rtl;
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: 1fr 1fr 1fr;
-  
-  @media screen and (min-width: 451px) and (orientation:portrait) {
-    height: 6rem;
-    grid-template-rows: 1fr;
-    grid-template-columns: minmax(120px, 1fr) minmax(5rem, 1fr) minmax(120px, 1fr);
-  }
+  background-color: red;
 
-  @media screen and (orientation:landscape) {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    min-width: 15vw;
-    max-width: 15vw;
-    margin: 0;
-    background-color: red;
+  .dashboard-container {
+    @media screen and (orientation:portrait) {
+      font-size: 2rem;
+      width: 100%;
+      display: grid;
+      direction: rtl;
+    }
+  
+    @media screen and (max-width: 450px) and (orientation:portrait) {
+      grid-template-rows: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    
+    @media screen and (min-width: 451px) and (orientation:portrait) {
+      height: 10vh;
+      grid-template-rows: 1fr;
+      grid-template-columns: minmax(120px, 1fr) minmax(5rem, 1fr) minmax(120px, 1fr);
+    }
+  
+    @media screen and (orientation:landscape) {
+      min-width: 15vw;
+      max-width: 15vw;
+      margin: 0;
+      display: grid;
+      grid-template-rows: 40% 20% 40%;
+    }
+
+    @media screen and (max-height: 500px) and (orientation:landscape) {
+      height: 100%;
+    }
+
+    @media screen and (min-height: 501px) and (orientation:landscape) {
+      height: 60%;
+    }
   }
 }

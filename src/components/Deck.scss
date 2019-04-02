@@ -5,8 +5,8 @@
   background-color: yellow;  
 
   @media screen and (orientation:portrait) {
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
   }
 
   @media screen and (orientation:landscape) {

@@ -1,31 +1,49 @@
 .DashboardButtons {
   background-color: lightskyblue;
-  grid-column: 1 / 4;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  flex-direction: row-reverse;
+  
+  @media screen and (orientation:portrait) {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row-reverse;
+  }
+
+  @media screen and (max-width: 450px) and (orientation:portrait) {
+    grid-column: 1 / 4;
+  }
+
 
   @media screen and (min-width: 451px) and (orientation:portrait) {
     grid-column: 1 / 2;
   }
 
   @media screen and (orientation:landscape) {
-    padding: 10%;
     display: grid;
-    grid-gap: 0.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(3.5rem, 1fr));
+    grid-template-rows: 50% 50%;
   }
 
   .button {
     cursor: pointer;
 
-    > i {
-      min-width: 60px;
-      min-height: 60px;
+    @media screen and (orientation:landscape) {
+      font-size: 2rem;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+    }
+
+    > i {
+      @media screen and (orientation:portrait) {
+        min-width: 60px;
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      @media screen and (orientation:landscape) {
+    
+      }
     }
   }
 
