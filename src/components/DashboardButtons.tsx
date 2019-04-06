@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { State } from "../store";
-import { getMoves, getTimerPaused } from './../store/selectors';
+import { getTimerOn, getTimerPaused } from './../store/selectors';
 import { restart, pauseTimer, restartTimer } from '../store/actions';
 
 import './DashboardButtons.scss';
 
 export type DashboardButtonsProps = {
-  moves: number;
+  timerOn: boolean;
   paused: boolean;
   restart: typeof restart;
   pauseTimer: typeof pauseTimer;
@@ -15,7 +15,7 @@ export type DashboardButtonsProps = {
 }
 
 const mapStateToProps = (state: State) => ({
-  moves: getMoves(state),
+  timerOn: getTimerOn(state),
   paused: getTimerPaused(state)
 });
 
@@ -23,16 +23,18 @@ const mapDispatchToProps = { restart, pauseTimer, restartTimer };
 
 class DashboardButtons extends React.PureComponent<DashboardButtonsProps> {
   handleRestart = () => {
-    const { moves, restart } = this.props;
-    if (!!moves) restart();
+    const { timerOn, restart } = this.props;
+    if (timerOn) restart();
   }
 
   handlePause = () => {
-    if (!this.props.paused) {
-      this.props.pauseTimer();
+    const { timerOn, paused, pauseTimer, restartTimer} = this.props;
+    if (!timerOn) return;
+    if (!paused) {
+      pauseTimer();
       return;
     }
-    this.props.restartTimer();
+    restartTimer();
   }
 
   render() {
