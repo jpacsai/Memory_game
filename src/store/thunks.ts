@@ -7,6 +7,7 @@ import {
   resolveMatchedCards,
   closeOpenedCards,
   resolveMove,
+  startTime,
   resolveTime,
   resolvePause,
   clear
@@ -85,6 +86,7 @@ export const handleNoMatch = (): Thunk => (dispatch, getState) => {
 
 export const startTimer = (): Thunk => (dispatch, getState) => {
   timer = setInterval(() => dispatch(resolveTime()), 1000);
+  dispatch(startTime());
 };
 
 export const restartTimer = (): Thunk => (dispatch, getState) => {

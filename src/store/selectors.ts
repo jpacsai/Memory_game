@@ -13,7 +13,7 @@ export const getTimer = (state: State) => state.timer;
 
 export const getTimerValue = createSelector(
   getTimer,
-  timer => timer.value
+  timer => timer.timerSeconds
 )
 
 export const getMinutes = createSelector(
