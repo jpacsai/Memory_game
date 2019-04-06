@@ -7,20 +7,23 @@ import {
   resolveMatchedCards,
   closeOpenedCards,
   resolveMove,
+  resolveTime,
   clear
 } from './actions';
 import createFullDeck from '../utils/createDeck';
 import shuffle from '../utils/shuffle';
 import fetchCardImages from './../utils/fetchCardImages';
 import getCardURLs from '../utils/getCardURLs';
-import { getDeck, getOpenCards } from './selectors';
+import { getDeck, getOpenCards, getMoves } from './selectors';
+
+let timer: any;
 
 export type Thunk = (
   dispatch: (action: Action | Thunk) => any,
   getState: () => State,
   extraArguments: ExtraArguments
-) => any;
-
+  ) => any;
+  
 export const delayAction = (func: any, time: number): Thunk => (dispatch, getState) => {
   setTimeout(() => {
     dispatch(func);
@@ -48,15 +51,18 @@ export const shuffleDeck = (deck: Card[]): Thunk => (dispatch, getState) => {
 }
 
 export const restart = (): Thunk => (dispatch, getState) => {
+  clearInterval(timer);
   dispatch(clear());
   const deck = getDeck(getState()) as Card[];
   dispatch(shuffleDeck(deck));
 }
 
 export const handleOpenCard = (cardID: number): Thunk => (dispatch, getState) => {
-  dispatch(resolveOpenCard(cardID));
+  const moves = getMoves(getState());
   const openCards = getOpenCards(getState());
-  if (openCards.length === 2) dispatch(checkMatch(openCards));
+  if (moves === 0 && openCards.length === 0) dispatch(startTimer());
+  dispatch(resolveOpenCard(cardID));
+  if (openCards.length + 1 === 2) dispatch(checkMatch(openCards));
 };
 
 export const checkMatch = (cardIDs: number[]): Thunk => (dispatch, getState) => {
@@ -74,4 +80,13 @@ export const handleMatch = (cardIDs: number[]): Thunk => (dispatch, getState) =>
 
 export const handleNoMatch = (): Thunk => (dispatch, getState) => {
   dispatch(delayAction(closeOpenedCards(), 1000));
+};
+
+export const startTimer = (): Thunk => (dispatch, getState) => {
+  clearInterval(timer);
+  timer = setInterval(() => dispatch(resolveTime()), 1000);
+};
+
+export const pauseTimer = (): Thunk => (dispatch, getState) => {
+  clearInterval(timer);
 };
