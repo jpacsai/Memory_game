@@ -8,6 +8,7 @@ import {
   closeOpenedCards,
   resolveMove,
   resolveTime,
+  resolvePause,
   clear
 } from './actions';
 import createFullDeck from '../utils/createDeck';
@@ -83,10 +84,15 @@ export const handleNoMatch = (): Thunk => (dispatch, getState) => {
 };
 
 export const startTimer = (): Thunk => (dispatch, getState) => {
-  clearInterval(timer);
+  timer = setInterval(() => dispatch(resolveTime()), 1000);
+};
+
+export const restartTimer = (): Thunk => (dispatch, getState) => {
+  dispatch(resolvePause(false));
   timer = setInterval(() => dispatch(resolveTime()), 1000);
 };
 
 export const pauseTimer = (): Thunk => (dispatch, getState) => {
+  dispatch(resolvePause(true));
   clearInterval(timer);
 };
