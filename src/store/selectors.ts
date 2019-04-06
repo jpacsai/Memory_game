@@ -9,14 +9,24 @@ export const getMatchedCards = (state: State) => state.matchedCards;
 
 export const getMoves = (state: State) => state.moves;
 
-export const getTime = (state: State) => state.timer;
+export const getTimer = (state: State) => state.timer;
+
+export const getTimerValue = createSelector(
+  getTimer,
+  timer => timer.value
+)
 
 export const getMinutes = createSelector(
-  getTime,
-  time => Math.floor(time / 60)
+  getTimerValue,
+  seconds => Math.floor(seconds / 60)
 );
 
 export const getSeconds = createSelector(
-  [getTime, getMinutes],
-  (time, minutes) => time - minutes * 60
+  [getTimerValue, getMinutes],
+  (seconds, minutes) => seconds - minutes * 60
+);
+
+export const getTimerPaused = createSelector(
+  getTimer,
+  timer => timer.paused
 );
