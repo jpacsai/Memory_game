@@ -1,12 +1,24 @@
-import { TICK, CLEAR } from '../actionNames';
+import { RESOLVE_TIME, RESOLVE_PAUSE, CLEAR } from '../actionNames';
 import { Actions } from '../actionTypes';
 
-export default (state: number = 0, action: Actions): number => {
+export type Timer = {
+  value: number;
+  paused: boolean;
+}
+
+const defaultState: Timer = {
+  value: 0,
+  paused: false
+};
+
+export default (state: Timer = defaultState, action: Actions): Timer => {
   switch (action.type) {
-    case TICK:
-      return state + 1;
+    case RESOLVE_TIME:
+      return {value: state.value + 1, paused: false};
+    case RESOLVE_PAUSE:
+      return {...state, paused: action.payload};
     case CLEAR:
-      return 0;
+      return defaultState;
     default:
       return state;
   }
