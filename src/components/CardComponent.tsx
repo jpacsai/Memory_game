@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { State } from "../store";
 import classnames from 'classnames';
 import { Card as CardType } from '../types';
-import { getOpenCards, getMatchedCards } from './../store/selectors';
+import { getOpenCards, getMatchedCards, getTimerPaused } from './../store/selectors';
 import { handleOpenCard } from '../store/actions';
 
 import './CardComponent.scss';
@@ -12,12 +12,14 @@ export type CardComponentProps = {
   card: CardType;
   openCards: number[];
   matchedCards: number[];
+  paused: boolean;
   handleOpenCard: typeof handleOpenCard;
 }
 
 const mapStateToProps = (state: State) => ({
   openCards: getOpenCards(state),
-  matchedCards: getMatchedCards(state)
+  matchedCards: getMatchedCards(state),
+  paused: getTimerPaused(state)
 });
 
 const mapDispatchToProps = { handleOpenCard };
@@ -26,8 +28,8 @@ class CardComponent extends React.PureComponent<CardComponentProps> {
   timer: NodeJS.Timeout | null = null;
 
   handleClick = () => {
-    const { card, openCards } = this.props;
-    if (openCards.length < 2) this.props.handleOpenCard(card.id);
+    const { card, paused, openCards } = this.props;
+    if (!paused && openCards.length < 2) this.props.handleOpenCard(card.id);
   }
 
   render() {
