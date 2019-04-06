@@ -30,3 +30,8 @@ export const getTimerPaused = createSelector(
   getTimer,
   timer => timer.paused
 );
+
+export const getTimerOn = createSelector(
+  getTimer,
+  timer => timer.timerOn
+);
