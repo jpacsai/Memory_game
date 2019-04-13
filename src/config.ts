@@ -2,6 +2,10 @@ import { Cards } from './types';
 
 export const maxScore = 3;
 
+export const deductScoreFirst = 12;
+
+export const deductScoreStep = 5;
+
 export const cardImages = [
   {
     name: "fruits",
