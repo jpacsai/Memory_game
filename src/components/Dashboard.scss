@@ -15,7 +15,8 @@
     }
     
     @media screen and (min-width: 451px) and (orientation:portrait) {
-      height: 10vh;
+      height: 14vh;
+      max-height: 120px;
       grid-template-rows: 1fr;
       grid-template-columns: minmax(120px, 1fr) minmax(5rem, 1fr) minmax(120px, 1fr);
     }
