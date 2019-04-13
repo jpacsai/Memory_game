@@ -45,10 +45,10 @@ class DashboardButtons extends React.PureComponent<DashboardButtonsProps> {
         <PauseModal isOpen={paused} onClose={this.handlePause}/>
         <div className='DashboardButtons'>
           <div className='pause-button' onClick={this.handlePause}>
-            { paused ? <i className="fa fa-play"></i> : <i className="fa fa-pause"></i>}
+            { paused ? <i className="fas fa-play"/> : <i className="fas fa-pause"/>}
           </div>
           <div className='restart-button' onClick={this.handleRestart}>
-            <i className="fa fa-repeat"></i>
+            <i className="fas fa-redo-alt"/>
           </div>
         </div>
       </Fragment>
