@@ -7,7 +7,7 @@ const defaultState = maxScore;
 export default (state: number = defaultState, action: Actions): number => {
   switch (action.type) {
     case DEDUCT_SCORE:
-      return action.payload;
+      return state - 1;
     case CLEAR:
       return defaultState;
     default:
