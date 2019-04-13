@@ -64,20 +64,21 @@ export const handleOpenCard = (cardID: number): Thunk => (dispatch, getState) =>
   const openCards = getOpenCards(getState());
   if (moves === 0 && openCards.length === 0) dispatch(startTimer());
   dispatch(resolveOpenCard(cardID));
-  if (openCards.length + 1 === 2) dispatch(checkMatch(openCards));
+  if (openCards.length + 1 === 2) dispatch(checkMatch());
 };
 
-export const checkMatch = (cardIDs: number[]): Thunk => (dispatch, getState) => {
+export const checkMatch = (): Thunk => (dispatch, getState) => {
   const deck = getDeck(getState()) as Card[];
-  const urls = getCardURLs(deck, cardIDs);
-  if (urls[0] === urls[1]) dispatch(handleMatch(cardIDs));
+  const openCards = getOpenCards(getState());
+  const urls = getCardURLs(deck, openCards);
+  if (urls[0] === urls[1]) dispatch(handleMatch(openCards));
   else dispatch(handleNoMatch());
   dispatch(resolveMove());
 };
 
-export const handleMatch = (cardIDs: number[]): Thunk => (dispatch, getState) => {
+export const handleMatch = (openCards: number[]): Thunk => (dispatch, getState) => {
   dispatch(delayAction(closeOpenedCards(), 500));
-  dispatch(resolveMatchedCards(cardIDs));
+  dispatch(resolveMatchedCards(openCards));
 };
 
 export const handleNoMatch = (): Thunk => (dispatch, getState) => {
