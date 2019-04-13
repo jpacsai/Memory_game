@@ -18,7 +18,7 @@ import shuffle from "../utils/shuffle";
 import getCardURLs from "../utils/getCardURLs";
 import createFullDeck from "../utils/createDeck";
 import fetchCardImages from "./../utils/fetchCardImages";
-import { getDeck, getOpenCards, getMoves } from "./selectors";
+import { getDeck, getOpenCards, getMoves, getScores } from "./selectors";
 
 let timer: any;
 
@@ -86,11 +86,15 @@ export const checkMatch = (): Thunk => (dispatch, getState) => {
   else dispatch(handleNoMatch());
   dispatch(resolveMove());
   const moves = getMoves(getState());
-  if (
+  const scores = getScores(getState());
+  if (scores === 0) return;
+  else if (
     moves === deductScoreFirst ||
     (moves > deductScoreFirst &&
       (moves - deductScoreFirst) % deductScoreStep === 0)
-  ) dispatch(deductScore);
+  ) {
+    dispatch(deductScore());
+  }
 };
 
 export const handleMatch = (openCards: number[]): Thunk => (
