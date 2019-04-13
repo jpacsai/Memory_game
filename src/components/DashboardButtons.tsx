@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { connect } from "react-redux";
+import classnames from 'classnames';
 import { State } from "../store";
 import { getTimerOn, getTimerPaused } from './../store/selectors';
 import { restart, pauseTimer, restartTimer } from '../store/actions';
@@ -39,11 +40,11 @@ class DashboardButtons extends React.PureComponent<DashboardButtonsProps> {
   }
 
   render() {
-    const { paused } = this.props;
+    const { paused, timerOn } = this.props;
     return (
       <Fragment>
         <PauseModal isOpen={paused} onClose={this.handlePause}/>
-        <div className='DashboardButtons'>
+        <div className={classnames('DashboardButtons', !timerOn ? 'disabled' : '')}>
           <div className='pause-button' onClick={this.handlePause}>
             { paused ? <i className="fas fa-play"/> : <i className="fas fa-pause"/>}
           </div>

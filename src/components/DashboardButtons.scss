@@ -1,6 +1,11 @@
 .DashboardButtons {
   background-color: lightskyblue;
   
+  &.disabled {
+    color: grey;
+    pointer-events: none;
+  }
+
   @media screen and (orientation:portrait) {
     display: flex;
     align-items: center;
