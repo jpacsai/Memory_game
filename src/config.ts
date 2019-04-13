@@ -1,5 +1,7 @@
 import { Cards } from './types';
 
+export const maxScore = 3;
+
 export const cardImages = [
   {
     name: "fruits",

@@ -10,4 +10,5 @@ export const resolveMove = () => action(actionNames.RESOLVE_MOVE);
 export const startTime = () => action(actionNames.START_TIMER);
 export const resolveTime = () => action(actionNames.RESOLVE_TIME);
 export const resolvePause = (pause: boolean) => action(actionNames.RESOLVE_PAUSE, pause);
+export const deductScore = () => action(actionNames.DEDUCT_SCORE);
 export const clear = () => action(actionNames.CLEAR);

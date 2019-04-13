@@ -6,4 +6,5 @@ export const RESOLVE_MOVE = 'RESOLVE_MOVE';
 export const RESOLVE_TIME = 'RESOLVE_TIME';
 export const START_TIMER = 'START_TIMER';
 export const RESOLVE_PAUSE = 'RESOLVE_PAUSE';
+export const DEDUCT_SCORE = 'DEDUCT_SCORE';
 export const CLEAR = 'CLEAR';
