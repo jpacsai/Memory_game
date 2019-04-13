@@ -1,6 +1,7 @@
-import { Action } from 'redux';
-import { ExtraArguments, State } from './';
-import { Card } from '../types';
+import { Action } from "redux";
+import { ExtraArguments, State } from "./";
+import { Card } from "../types";
+import { deductScoreFirst, deductScoreStep } from "../config";
 import {
   resolveDeck,
   resolveOpenCard,
@@ -10,13 +11,14 @@ import {
   startTime,
   resolveTime,
   resolvePause,
+  deductScore,
   clear
-} from './actions';
-import createFullDeck from '../utils/createDeck';
-import shuffle from '../utils/shuffle';
-import fetchCardImages from './../utils/fetchCardImages';
-import getCardURLs from '../utils/getCardURLs';
-import { getDeck, getOpenCards, getMoves } from './selectors';
+} from "./actions";
+import shuffle from "../utils/shuffle";
+import getCardURLs from "../utils/getCardURLs";
+import createFullDeck from "../utils/createDeck";
+import fetchCardImages from "./../utils/fetchCardImages";
+import { getDeck, getOpenCards, getMoves } from "./selectors";
 
 let timer: any;
 
@@ -24,20 +26,26 @@ export type Thunk = (
   dispatch: (action: Action | Thunk) => any,
   getState: () => State,
   extraArguments: ExtraArguments
-  ) => any;
-  
-export const delayAction = (func: any, time: number): Thunk => (dispatch, getState) => {
+) => any;
+
+export const delayAction = (func: any, time: number): Thunk => (
+  dispatch,
+  getState
+) => {
   setTimeout(() => {
     dispatch(func);
   }, time);
 };
 
 export const fetchInitData = (): Thunk => (dispatch, getState) => {
-  const defaultCards = 'fruits';
+  const defaultCards = "fruits";
   dispatch(createDefaultDeck(defaultCards));
 };
 
-export const createDefaultDeck = (cardName: string): Thunk => (dispatch, getState) => {
+export const createDefaultDeck = (cardName: string): Thunk => (
+  dispatch,
+  getState
+) => {
   try {
     const images = fetchCardImages(cardName);
     const fullDeck = createFullDeck(images.images);
@@ -50,16 +58,19 @@ export const createDefaultDeck = (cardName: string): Thunk => (dispatch, getStat
 export const shuffleDeck = (deck: Card[]): Thunk => (dispatch, getState) => {
   const shuffledDeck = shuffle(deck);
   dispatch(resolveDeck(shuffledDeck));
-}
+};
 
 export const restart = (): Thunk => (dispatch, getState) => {
   clearInterval(timer);
   dispatch(clear());
   const deck = getDeck(getState()) as Card[];
   dispatch(shuffleDeck(deck));
-}
+};
 
-export const handleOpenCard = (cardID: number): Thunk => (dispatch, getState) => {
+export const handleOpenCard = (cardID: number): Thunk => (
+  dispatch,
+  getState
+) => {
   const moves = getMoves(getState());
   const openCards = getOpenCards(getState());
   if (moves === 0 && openCards.length === 0) dispatch(startTimer());
@@ -74,9 +85,18 @@ export const checkMatch = (): Thunk => (dispatch, getState) => {
   if (urls[0] === urls[1]) dispatch(handleMatch(openCards));
   else dispatch(handleNoMatch());
   dispatch(resolveMove());
+  const moves = getMoves(getState());
+  if (
+    moves === deductScoreFirst ||
+    (moves > deductScoreFirst &&
+      (moves - deductScoreFirst) % deductScoreStep === 0)
+  ) dispatch(deductScore);
 };
 
-export const handleMatch = (openCards: number[]): Thunk => (dispatch, getState) => {
+export const handleMatch = (openCards: number[]): Thunk => (
+  dispatch,
+  getState
+) => {
   dispatch(delayAction(closeOpenedCards(), 500));
   dispatch(resolveMatchedCards(openCards));
 };
