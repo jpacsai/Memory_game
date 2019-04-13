@@ -12,10 +12,25 @@
 
   .Modal {
     max-width: 80%;
+    background-color: white;
+    padding: 1rem;
 
-    > main {
-      background-color: white;
-      padding: 1rem;
+    header {
+      i {
+        width: 2rem;
+        margin-left: auto;
+        margin-right: 0;
+        display: block;
+        font-size: 2rem;
+      }
+
+      i:hover {
+        color: blue;
+      }
+    }
+
+    main {
+      padding-top: 1rem;
     }
   }
 }

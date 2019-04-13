@@ -1,14 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import classnames from 'classnames';
+import React from "react";
+import ReactDOM from "react-dom";
+import classnames from "classnames";
 
-import './Modal.scss';
+import "./Modal.scss";
 
 export type ModalProps = {
   isOpen?: boolean;
   onClose?: Function;
   modalClassName?: string;
-}
+};
 
 class Modal extends React.PureComponent<ModalProps> {
   static defaultProps = {
@@ -17,18 +17,18 @@ class Modal extends React.PureComponent<ModalProps> {
   };
 
   componentDidMount() {
-    document.addEventListener('mousedown', this.handleClick);
-  };
+    document.addEventListener("mousedown", this.handleClick);
+  }
 
   componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClick);
-  };
+    document.removeEventListener("mousedown", this.handleClick);
+  }
 
   handleClose = () => {
     this.props.onClose!();
   };
 
-  handleClick = (event:any) => {
+  handleClick = (event: any) => {
     if (this.refs.modal && !(this.refs.modal as Node).contains(event.target)) {
       this.handleClose();
     }
@@ -40,11 +40,16 @@ class Modal extends React.PureComponent<ModalProps> {
     const Modal = (
       <div className="ModalContainer">
         <div className={classnames("Modal", modalClassName)} ref="modal">
+          <header>
+            <i className="far fa-times-circle" onClick={this.handleClose} />
+          </header>
           <main>{children}</main>
         </div>
       </div>
     );
-    return ReactDOM.createPortal(Modal, document.getElementById('modal') as any);
+    return ReactDOM.createPortal(Modal, document.getElementById(
+      "modal"
+    ) as any);
   }
 }
 
