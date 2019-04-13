@@ -35,3 +35,5 @@ export const getTimerOn = createSelector(
   getTimer,
   timer => timer.timerOn
 );
+
+export const getScores = (state: State) => state.scores;
