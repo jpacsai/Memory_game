@@ -1,12 +1,18 @@
+@import '../variables.scss';
+
 .Timer {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.6rem;
+  font-size: $small-font;
   background-color: aqua;
   direction: ltr;
 
-  @media screen and (min-width: 451px) and (orientation:portrait) {
-    font-size: 2rem;
+  @media screen and (min-width: 451px) and (orientation: portrait) {
+    font-size: $large-font;
+  }
+
+  @media screen and (orientation: landscape) {
+    font-size: $large-font;
   }
 }

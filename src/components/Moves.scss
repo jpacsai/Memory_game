@@ -1,3 +1,5 @@
+@import '../variables.scss';
+
 .Moves {
   // min-width: 8.5rem;
   background-color: lightcoral;
@@ -5,9 +7,9 @@
   @media screen and (orientation:portrait) {
     grid-column: 2 / 4;
     display: flex;
+    flex-direction: row-reverse;
     align-items: center;
     justify-content: space-evenly;
-    flex-direction: row-reverse;
   }
 
   @media screen and (min-width: 451px) and (orientation:portrait) {
@@ -22,17 +24,18 @@
   
   .move-counter {
     direction: initial;
-    font-size: 1.6rem;
     text-align: center;
+    font-size: $small-font;
 
     @media screen and (min-width: 451px) and (orientation:portrait) {
-      font-size: 2rem;
+      font-size: $large-font;
     }
 
     @media screen and (orientation:landscape) {
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      font-size: $large-font;
     }
   }
 }

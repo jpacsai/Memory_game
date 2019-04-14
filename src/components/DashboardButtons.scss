@@ -1,3 +1,5 @@
+@import '../variables.scss';
+
 .DashboardButtons {
   background-color: lightskyblue;
   
@@ -29,9 +31,10 @@
 
   .button {
     cursor: pointer;
+    font-size: $small-font;
 
     @media screen and (orientation:landscape) {
-      font-size: 2rem;
+      font-size: $large-font;
       display: flex;
       justify-content: center;
       align-items: center;
