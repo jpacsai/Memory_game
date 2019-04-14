@@ -1,6 +1,6 @@
 import { Cards } from './types';
 
-export const maxScore = 3;
+export const maxScore = 3; // if changed update in varibles.scss too
 
 export const deductScoreFirst = 12;
 
