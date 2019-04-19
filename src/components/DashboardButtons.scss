@@ -31,10 +31,10 @@
 
   .button {
     cursor: pointer;
-    font-size: $small-font;
+    font-size: $small-button;
 
     @media screen and (orientation:landscape) {
-      font-size: $large-font;
+      font-size: $large-button;
       display: flex;
       justify-content: center;
       align-items: center;

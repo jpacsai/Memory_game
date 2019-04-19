@@ -20,7 +20,9 @@ class Moves extends React.PureComponent<MovesProps> {
     return (
       <div className='Moves'>
         <Stars />
-        <div className='move-counter'>{`${moves} Move${moves > 1 ? 's' : ''}`}</div>
+        <div className='move-counter'>
+          <span className='move-value'>{moves}</span><span className='move-text'>{`Move${moves > 1 ? 's' : ''}`}</span>
+        </div>
       </div>
     )
   }

@@ -23,8 +23,10 @@
   }
   
   .move-counter {
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    align-items: center;
     direction: initial;
-    text-align: center;
     font-size: $small-font;
 
     @media screen and (min-width: 451px) and (orientation:portrait) {
@@ -32,10 +34,13 @@
     }
 
     @media screen and (orientation:landscape) {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      grid-template-columns: 35% 65%;
       font-size: $large-font;
+    }
+
+    .move-value {
+      text-align: right;
+      padding-right: 0.5rem;
     }
   }
 }

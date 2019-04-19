@@ -1,3 +1,5 @@
+@import '../variables.scss';
+
 .Dashboard {
   background-color: red;
 
@@ -22,8 +24,8 @@
     }
   
     @media screen and (orientation:landscape) {
-      min-width: 15vw;
-      max-width: 15vw;
+      min-width: $dashboard-width;
+      max-width: $dashboard-width;
       margin: 0;
       display: grid;
       grid-template-rows: 40% 20% 40%;
