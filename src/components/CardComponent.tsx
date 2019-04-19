@@ -38,7 +38,7 @@ class CardComponent extends React.PureComponent<CardComponentProps> {
     const open = openCards.includes(card.id);
     const matched = matchedCards.includes(card.id);
     return (
-      <div className={"CardComponent"} >
+      <div className="CardComponent" >
         <div
           onClick={this.handleClick}
           className={classnames('card-container', open ? 'open' : matched ? 'matched' : '')}
