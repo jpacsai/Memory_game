@@ -8,7 +8,8 @@ export type StartModalProps = {
 
 class StartModal extends React.PureComponent<StartModalProps> {
   handleClose = () => {
-    if (this.props.onClose) this.props.onClose();
+    const { onClose } = this.props;
+    if (onClose) onClose();
   };
   
   render() {
