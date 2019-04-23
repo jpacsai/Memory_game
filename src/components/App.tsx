@@ -1,8 +1,7 @@
 import React from "react";
-import isEqual from 'react-fast-compare';
 import { connect } from 'react-redux';
 import { State } from "../store";
-import { fetchInitData } from "../store/actions";
+import { fetchInitData, clear } from "../store/actions";
 import { getMatchedCards } from './../store/selectors';
 
 import StartModal from './StartModal';
@@ -18,6 +17,7 @@ export type AppState = {
 
 export type AppProps = {
   fetchInitData: typeof fetchInitData;
+  clear: typeof clear;
   matchedCards: number[];
 };
 
@@ -25,7 +25,7 @@ const mapStateToProps = (state: State) => ({
   matchedCards: getMatchedCards(state)
 });
 
-const mapDispatchToProps = { fetchInitData };
+const mapDispatchToProps = { fetchInitData, clear };
 
 class App extends React.PureComponent<AppProps, AppState> {
   state = {
@@ -51,6 +51,7 @@ class App extends React.PureComponent<AppProps, AppState> {
 
   handleEndClose = () => {
     this.setState({ end: false });
+    this.props.clear();
   }
 
   render() {

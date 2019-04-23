@@ -9,6 +9,7 @@ import {
   closeOpenedCards,
   resolveMove,
   startTime,
+  endGame,
   resolveTime,
   resolvePause,
   deductScore,
@@ -18,7 +19,7 @@ import shuffle from "../utils/shuffle";
 import getCardURLs from "../utils/getCardURLs";
 import createFullDeck from "../utils/createDeck";
 import fetchCardImages from "./../utils/fetchCardImages";
-import { getDeck, getOpenCards, getMoves, getScores } from "./selectors";
+import { getDeck, getOpenCards, getMoves, getScores, getMatchedCards } from "./selectors";
 
 let timer: any;
 
@@ -103,6 +104,11 @@ export const handleMatch = (openCards: number[]): Thunk => (
 ) => {
   dispatch(delayAction(closeOpenedCards(), 500));
   dispatch(resolveMatchedCards(openCards));
+  const matchedCards = getMatchedCards(getState());
+  if (matchedCards.length === 16) {
+    dispatch(endGame());
+    clearInterval(timer);
+  }
 };
 
 export const handleNoMatch = (): Thunk => (dispatch, getState) => {
