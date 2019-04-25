@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from 'react-redux';
 import { State } from "../store";
+import { GameState } from "../types";
 import { fetchInitData, clear } from "../store/actions";
-import { getMatchedCards } from './../store/selectors';
+import { getGameState } from './../store/selectors';
 
 import StartModal from './StartModal';
 import EndModal from './EndModal';
@@ -12,17 +13,16 @@ import "./App.scss";
 
 export type AppState = {
   start: boolean;
-  end: boolean;
 }
 
 export type AppProps = {
   fetchInitData: typeof fetchInitData;
   clear: typeof clear;
-  matchedCards: number[];
+  gameState: GameState;
 };
 
 const mapStateToProps = (state: State) => ({
-  matchedCards: getMatchedCards(state)
+  gameState: getGameState(state)
 });
 
 const mapDispatchToProps = { fetchInitData, clear };
@@ -30,19 +30,10 @@ const mapDispatchToProps = { fetchInitData, clear };
 class App extends React.PureComponent<AppProps, AppState> {
   state = {
     start: true,
-    end: false
   }
 
   componentDidMount() {
     this.props.fetchInitData();
-  }
-
-  componentWillReceiveProps(nextProps: AppProps) {
-    if (nextProps.matchedCards.length === 16) {
-      setTimeout(() => {
-        this.setState({ end: true });
-      }, 1500);
-    }
   }
 
   handleStartClose = () => {
@@ -50,12 +41,12 @@ class App extends React.PureComponent<AppProps, AppState> {
   }
 
   handleEndClose = () => {
-    this.setState({ end: false });
     this.props.clear();
   }
 
   render() {
-    const { start, end } = this.state;
+    const { start } = this.state;
+    const { gameState } = this.props;
     return (
       <div className="App">
         <StartModal isOpen={start} onClose={this.handleStartClose}/>
@@ -64,7 +55,7 @@ class App extends React.PureComponent<AppProps, AppState> {
           <Dashboard />
           <Deck />
         </div>
-        <EndModal isOpen={end} onClose={this.handleEndClose}/>
+        <EndModal isOpen={gameState === GameState.END} onClose={this.handleEndClose}/>
       </div>
     );
   }

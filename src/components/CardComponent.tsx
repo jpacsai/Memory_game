@@ -2,8 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { State } from "../store";
 import classnames from 'classnames';
-import { Card as CardType } from '../types';
-import { getOpenCards, getMatchedCards, getTimerPaused } from './../store/selectors';
+import { GameState, Card as CardType } from '../types';
+import { getOpenCards, getMatchedCards, getGameState } from './../store/selectors';
 import { handleOpenCard } from '../store/actions';
 
 import './CardComponent.scss';
@@ -12,14 +12,14 @@ export type CardComponentProps = {
   card: CardType;
   openCards: number[];
   matchedCards: number[];
-  paused: boolean;
+  gameState: GameState;
   handleOpenCard: typeof handleOpenCard;
 }
 
 const mapStateToProps = (state: State) => ({
   openCards: getOpenCards(state),
   matchedCards: getMatchedCards(state),
-  paused: getTimerPaused(state)
+  gameState: getGameState(state)
 });
 
 const mapDispatchToProps = { handleOpenCard };
@@ -28,8 +28,8 @@ class CardComponent extends React.PureComponent<CardComponentProps> {
   timer: NodeJS.Timeout | null = null;
 
   handleClick = () => {
-    const { card, paused, openCards } = this.props;
-    if (!paused && openCards.length < 2) this.props.handleOpenCard(card.id);
+    const { card, gameState, openCards } = this.props;
+    if (gameState !== GameState.PAUSED && openCards.length < 2) this.props.handleOpenCard(card.id);
   }
 
   render() {

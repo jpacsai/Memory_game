@@ -2,37 +2,37 @@ import React, { Fragment } from 'react';
 import { connect } from "react-redux";
 import classnames from 'classnames';
 import { State } from "../store";
-import { getTimerOn, getTimerPaused } from './../store/selectors';
+import { GameState } from "../types";
+import { getGameState } from './../store/selectors';
 import { restart, pauseTimer, restartTimer } from '../store/actions';
 
 import './DashboardButtons.scss';
 import PauseModal from './PauseModal';
 
 export type DashboardButtonsProps = {
-  timerOn: boolean;
-  paused: boolean;
+  gameState: GameState;
   restart: typeof restart;
   pauseTimer: typeof pauseTimer;
   restartTimer: typeof restartTimer;
 }
 
 const mapStateToProps = (state: State) => ({
-  timerOn: getTimerOn(state),
-  paused: getTimerPaused(state)
+  gameState: getGameState(state)
 });
 
 const mapDispatchToProps = { restart, pauseTimer, restartTimer };
 
 class DashboardButtons extends React.PureComponent<DashboardButtonsProps> {
   handleRestart = () => {
-    const { timerOn, restart } = this.props;
-    if (timerOn) restart();
+    const { gameState, restart } = this.props;
+    if (gameState === GameState.START) return; 
+    restart();
   }
 
   handlePause = () => {
-    const { timerOn, paused, pauseTimer, restartTimer} = this.props;
-    if (!timerOn) return;
-    if (!paused) {
+    const { gameState, pauseTimer, restartTimer} = this.props;
+    if (gameState === GameState.START || gameState === GameState.END) return;
+    if (gameState === GameState.GAME) {
       pauseTimer();
       return;
     }
@@ -40,13 +40,13 @@ class DashboardButtons extends React.PureComponent<DashboardButtonsProps> {
   }
 
   render() {
-    const { paused, timerOn } = this.props;
+    const { gameState } = this.props;
     return (
       <Fragment>
-        <PauseModal isOpen={paused} onClose={this.handlePause}/>
-        <div className={classnames('DashboardButtons', !timerOn ? 'disabled' : '')}>
+        <PauseModal isOpen={gameState === GameState.PAUSED} onClose={this.handlePause}/>
+        <div className={classnames('DashboardButtons', gameState === GameState.START || gameState === GameState.END ? 'disabled' : '')}>
           <div className='pause-button' onClick={this.handlePause}>
-            { paused ? <i className="fas fa-play"/> : <i className="fas fa-pause"/>}
+            { gameState === GameState.PAUSED ? <i className="fas fa-play"/> : <i className="fas fa-pause"/>}
           </div>
           <div className='restart-button' onClick={this.handleRestart}>
             <i className="fas fa-redo-alt"/>
