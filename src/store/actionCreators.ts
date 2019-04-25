@@ -1,7 +1,9 @@
 import { action } from 'typesafe-actions';
 import * as actionNames from './actionNames';
-import { Card } from '../types';
+import { GameState, Card } from '../types';
 
+export const resolveGameState = (gameState: GameState) =>
+  action(actionNames.RESOLVE_GAME_STATE, gameState);
 export const resolveDeck = (cards: Card[]) => action(actionNames.RESOLVE_DECK, cards);
 export const resolveOpenCard = (card: number) => action(actionNames.OPEN_CARD, card);
 export const closeOpenedCards = () => action(actionNames.CLOSE_CARDS);
