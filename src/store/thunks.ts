@@ -1,17 +1,15 @@
 import { Action } from "redux";
 import { ExtraArguments, State } from "./";
-import { Card } from "../types";
+import { GameState, Card } from "../types";
 import { deductScoreFirst, deductScoreStep } from "../config";
 import {
+  resolveGameState,
   resolveDeck,
   resolveOpenCard,
   resolveMatchedCards,
   closeOpenedCards,
   resolveMove,
-  startTime,
-  endGame,
   resolveTime,
-  resolvePause,
   deductScore,
   clear
 } from "./actions";
@@ -19,7 +17,13 @@ import shuffle from "../utils/shuffle";
 import getCardURLs from "../utils/getCardURLs";
 import createFullDeck from "../utils/createDeck";
 import fetchCardImages from "./../utils/fetchCardImages";
-import { getDeck, getOpenCards, getMoves, getScores, getMatchedCards } from "./selectors";
+import {
+  getDeck,
+  getOpenCards,
+  getMoves,
+  getScores,
+  getMatchedCards
+} from "./selectors";
 
 let timer: any;
 
@@ -29,10 +33,7 @@ export type Thunk = (
   extraArguments: ExtraArguments
 ) => any;
 
-export const delayAction = (func: any, time: number): Thunk => (
-  dispatch,
-  getState
-) => {
+export const delayAction = (func: any, time: number): Thunk => (dispatch, getState) => {
   setTimeout(() => {
     dispatch(func);
   }, time);
@@ -43,10 +44,7 @@ export const fetchInitData = (): Thunk => (dispatch, getState) => {
   dispatch(createDefaultDeck(defaultCards));
 };
 
-export const createDefaultDeck = (cardName: string): Thunk => (
-  dispatch,
-  getState
-) => {
+export const createDefaultDeck = (cardName: string): Thunk => (dispatch, getState) => {
   try {
     const images = fetchCardImages(cardName);
     const fullDeck = createFullDeck(images.images);
@@ -68,10 +66,7 @@ export const restart = (): Thunk => (dispatch, getState) => {
   dispatch(shuffleDeck(deck));
 };
 
-export const handleOpenCard = (cardID: number): Thunk => (
-  dispatch,
-  getState
-) => {
+export const handleOpenCard = (cardID: number): Thunk => (dispatch, getState) => {
   const moves = getMoves(getState());
   const openCards = getOpenCards(getState());
   if (moves === 0 && openCards.length === 0) dispatch(startTimer());
@@ -98,15 +93,12 @@ export const checkMatch = (): Thunk => (dispatch, getState) => {
   }
 };
 
-export const handleMatch = (openCards: number[]): Thunk => (
-  dispatch,
-  getState
-) => {
+export const handleMatch = (openCards: number[]): Thunk => (dispatch,getState) => {
   dispatch(delayAction(closeOpenedCards(), 500));
   dispatch(resolveMatchedCards(openCards));
   const matchedCards = getMatchedCards(getState());
   if (matchedCards.length === 16) {
-    dispatch(endGame());
+    dispatch(resolveGameState(GameState.END));
     clearInterval(timer);
   }
 };
@@ -117,15 +109,15 @@ export const handleNoMatch = (): Thunk => (dispatch, getState) => {
 
 export const startTimer = (): Thunk => (dispatch, getState) => {
   timer = setInterval(() => dispatch(resolveTime()), 1000);
-  dispatch(startTime());
-};
-
-export const restartTimer = (): Thunk => (dispatch, getState) => {
-  dispatch(resolvePause(false));
-  timer = setInterval(() => dispatch(resolveTime()), 1000);
+  dispatch(resolveGameState(GameState.GAME));
 };
 
 export const pauseTimer = (): Thunk => (dispatch, getState) => {
-  dispatch(resolvePause(true));
+  dispatch(resolveGameState(GameState.PAUSED));
   clearInterval(timer);
+};
+
+export const restartTimer = (): Thunk => (dispatch, getState) => {
+  dispatch(resolveGameState(GameState.GAME));
+  timer = setInterval(() => dispatch(resolveTime()), 1000);
 };
