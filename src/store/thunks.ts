@@ -98,7 +98,7 @@ export const handleMatch = (openCards: number[]): Thunk => (dispatch,getState) =
   dispatch(resolveMatchedCards(openCards));
   const matchedCards = getMatchedCards(getState());
   if (matchedCards.length === 16) {
-    dispatch(resolveGameState(GameState.END));
+    dispatch(delayAction(resolveGameState(GameState.END), 1200));
     clearInterval(timer);
   }
 };
