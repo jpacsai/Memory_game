@@ -5,6 +5,7 @@ import classnames from "classnames";
 import "./Modal.scss";
 
 export type ModalProps = {
+  title?: string;
   isOpen?: boolean;
   onClose?: Function;
   modalClassName?: string;
@@ -35,12 +36,15 @@ class Modal extends React.PureComponent<ModalProps> {
   };
 
   render() {
-    const { children, isOpen, modalClassName } = this.props;
+    const { children, title, isOpen, modalClassName } = this.props;
     if (!isOpen) return null;
     const Modal = (
       <div className="ModalContainer">
         <div className={classnames("Modal", modalClassName)} ref="modal">
           <header>
+            { title && 
+              <span className="title">{title}</span>
+            }
             <i className="far fa-times-circle" onClick={this.handleClose} />
           </header>
           <main>{children}</main>
