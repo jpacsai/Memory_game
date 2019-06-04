@@ -15,7 +15,7 @@ class PauseModal extends React.PureComponent<PauseModalProps> {
     const { isOpen } = this.props;
     if (!isOpen) return null;
     return (
-      <Modal isOpen={isOpen} onClose={this.handleClose}>
+      <Modal isOpen={isOpen} onClose={this.handleClose} title="Pause">
         <div>
           Game paused
         </div>
