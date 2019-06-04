@@ -1,7 +1,8 @@
 @import "../variables.scss";
 
 .Stars {
-  
+  display: flex;
+  justify-content: center;
   background-color: plum;
 
   @media screen and (orientation: landscape) {
