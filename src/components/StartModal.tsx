@@ -1,5 +1,6 @@
 import React from "react";
 import Modal from "./Modal";
+import "./StartModal.scss";
 
 export type StartModalProps = {
   isOpen: boolean;
@@ -15,7 +16,18 @@ class StartModal extends React.PureComponent<StartModalProps> {
   render() {
     const { isOpen } = this.props;
     if (!isOpen) return null;
-    return <Modal isOpen={isOpen} onClose={this.handleClose} title="Start" />;
+    return (
+      <Modal
+        isOpen={isOpen}
+        onClose={this.handleClose}
+        title="Start"
+        modalClassName="StartModal"
+      >
+        <div className="text">
+          Find all 8 pairs of cards in the least number of moves and time.
+        </div>
+      </Modal>
+    );
   }
 }
 
