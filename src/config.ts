@@ -34,5 +34,18 @@ export const cardImages = [
       "https://res.cloudinary.com/jutzee/image/upload/v1559854127/memory-game/space/venus.svg",
       "https://res.cloudinary.com/jutzee/image/upload/v1559854126/memory-game/space/ursa-major.svg"
     ]
+  },
+  {
+    name: "developer",
+    images: [
+      "https://res.cloudinary.com/jutzee/image/upload/v1559855312/memory-game/dev/html-5.svg",
+      "https://res.cloudinary.com/jutzee/image/upload/v1559855310/memory-game/dev/css.svg",
+      "https://res.cloudinary.com/jutzee/image/upload/v1559855313/memory-game/dev/javascript.svg",
+      "https://res.cloudinary.com/jutzee/image/upload/v1559855315/memory-game/dev/react.svg",
+      "https://res.cloudinary.com/jutzee/image/upload/v1559855316/memory-game/dev/sass.svg",
+      "https://res.cloudinary.com/jutzee/image/upload/v1559855317/memory-game/dev/typescript.svg",
+      "https://res.cloudinary.com/jutzee/image/upload/v1559855311/memory-game/dev/github.svg",
+      "https://res.cloudinary.com/jutzee/image/upload/v1559855314/memory-game/dev/nodejs.svg"
+    ]
   }
 ] as Cards[];
