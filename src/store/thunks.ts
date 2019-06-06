@@ -1,7 +1,7 @@
 import { Action } from "redux";
 import { ExtraArguments, State } from "./";
 import { GameState, Card } from "../types";
-import { deductScoreFirst, deductScoreStep } from "../config";
+import { defaultDeck, deductScoreFirst, deductScoreStep } from "../config";
 import {
   resolveGameState,
   resolveDeck,
@@ -40,11 +40,10 @@ export const delayAction = (func: any, time: number): Thunk => (dispatch, getSta
 };
 
 export const fetchInitData = (): Thunk => (dispatch, getState) => {
-  const defaultCards = "fruits";
-  dispatch(createDefaultDeck(defaultCards));
+  dispatch(createDeck(defaultDeck));
 };
 
-export const createDefaultDeck = (cardName: string): Thunk => (dispatch, getState) => {
+export const createDeck = (cardName: string): Thunk => (dispatch, getState) => {
   try {
     const images = fetchCardImages(cardName);
     const fullDeck = createFullDeck(images.images);
