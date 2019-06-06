@@ -13,8 +13,7 @@ export type ModalProps = {
 
 class Modal extends React.PureComponent<ModalProps> {
   static defaultProps = {
-    isOpen: false,
-    onClose: () => {}
+    isOpen: false
   };
 
   componentDidMount() {
@@ -36,7 +35,7 @@ class Modal extends React.PureComponent<ModalProps> {
   };
 
   render() {
-    const { children, title, isOpen, modalClassName } = this.props;
+    const { children, title, isOpen, modalClassName, onClose } = this.props;
     if (!isOpen) return null;
     const Modal = (
       <div className="ModalContainer">
@@ -45,7 +44,7 @@ class Modal extends React.PureComponent<ModalProps> {
             { title && 
               <span className="title">{title}</span>
             }
-            <i className="far fa-times-circle" onClick={this.handleClose} />
+            {onClose && <i className="far fa-times-circle" onClick={this.handleClose} />}
           </header>
           <main>{children}</main>
         </div>
