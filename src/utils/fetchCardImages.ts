@@ -1,8 +1,8 @@
 import { Cards } from '../types';
-import { cardImages } from '../config';
+import { themes } from '../config';
 
 export default (cardName: string) => {
-  const images = cardImages.find((image: Cards) => image.name === cardName);
+  const images = themes.find((image: Cards) => image.name === cardName);
   if (!images) throw new Error('no card images found');
   return images;
 };

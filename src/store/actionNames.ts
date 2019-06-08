@@ -1,4 +1,5 @@
 export const RESOLVE_GAME_STATE = "RESOLVE_GAME_STATE";
+export const RESOLVE_THEME = "RESOLVE_THEME";
 export const RESOLVE_DECK = "RESOLVE_DECK";
 export const OPEN_CARD = "OPEN_CARD";
 export const CLOSE_CARDS = "CLOSE_CARDS";

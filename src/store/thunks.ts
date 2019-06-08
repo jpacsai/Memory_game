@@ -4,7 +4,7 @@ import { GameState, Card } from "../types";
 import { defaultDeck, deductScoreFirst, deductScoreStep } from "../config";
 import {
   resolveGameState,
-  resolveDeck,
+  resolveTheme,
   resolveOpenCard,
   resolveMatchedCards,
   closeOpenedCards,
@@ -13,10 +13,7 @@ import {
   deductScore,
   clear
 } from "./actions";
-import shuffle from "../utils/shuffle";
 import getCardURLs from "../utils/getCardURLs";
-import createFullDeck from "../utils/createDeck";
-import fetchCardImages from "./../utils/fetchCardImages";
 import {
   getDeck,
   getOpenCards,
@@ -40,29 +37,12 @@ export const delayAction = (func: any, time: number): Thunk => (dispatch, getSta
 };
 
 export const fetchInitData = (): Thunk => (dispatch, getState) => {
-  dispatch(createDeck(defaultDeck));
-};
-
-export const createDeck = (cardName: string): Thunk => (dispatch, getState) => {
-  try {
-    const images = fetchCardImages(cardName);
-    const fullDeck = createFullDeck(images.images);
-    dispatch(shuffleDeck(fullDeck));
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const shuffleDeck = (deck: Card[]): Thunk => (dispatch, getState) => {
-  const shuffledDeck = shuffle(deck);
-  dispatch(resolveDeck(shuffledDeck));
+  dispatch(resolveTheme(defaultDeck));
 };
 
 export const restart = (): Thunk => (dispatch, getState) => {
   clearInterval(timer);
   dispatch(clear());
-  const deck = getDeck(getState()) as Card[];
-  dispatch(shuffleDeck(deck));
 };
 
 export const handleOpenCard = (cardID: number): Thunk => (dispatch, getState) => {

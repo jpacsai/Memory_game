@@ -8,7 +8,7 @@ export const deductScoreStep = 5;
 
 export const defaultDeck = "fruits";
 
-export const cardImages = [
+export const themes = [
   {
     name: "fruits",
     images: [

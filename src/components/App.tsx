@@ -33,15 +33,11 @@ class App extends React.PureComponent<AppProps, AppState> {
   }
 
   componentDidMount() {
-    this.props.fetchInitData();
+    //this.props.fetchInitData();
   }
 
   handleStartClose = () => {
     this.setState({ start: false });
-  }
-
-  handleEndClose = () => {
-    this.props.clear();
   }
 
   render() {
@@ -55,7 +51,7 @@ class App extends React.PureComponent<AppProps, AppState> {
           <Dashboard />
           <Deck />
         </div>
-        <EndModal isOpen={gameState === GameState.END} onClose={this.handleEndClose}/>
+        <EndModal isOpen={gameState === GameState.END} />
       </div>
     );
   }

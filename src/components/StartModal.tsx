@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { createDeck } from "../store/actions";
+import { resolveTheme } from "../store/actions";
 
 import Modal from "./Modal";
 import "./StartModal.scss";
@@ -9,14 +9,14 @@ import ThemeSelect from "./ThemeSelect";
 export type StartModalProps = {
   isOpen: boolean;
   onClose: Function;
-  createDeck: typeof createDeck;
+  resolveTheme: typeof resolveTheme;
 };
 
-const mapDispatchToProps = { createDeck };
+const mapDispatchToProps = { resolveTheme };
 
 class StartModal extends React.PureComponent<StartModalProps> {
   handleChange = (selectedOption: any) => {
-    this.props.createDeck(selectedOption.value);
+    this.props.resolveTheme(selectedOption.value);
   };
 
   handleSubmit = () => {

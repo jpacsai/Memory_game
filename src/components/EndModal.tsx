@@ -20,7 +20,6 @@ const mapStateToProps = (state: State) => ({
 
 export type EndModalProps = {
   isOpen: boolean;
-  onClose: Function;
   min: number;
   sec: number;
   moves: number;
@@ -31,9 +30,8 @@ const mapDispatchToProps = { restart };
 
 class EndModal extends React.PureComponent<EndModalProps> {
   handleClose = () => {
-    const { restart, onClose } = this.props;
+    const { restart } = this.props;
     restart();
-    onClose();
   };
 
   render() {
