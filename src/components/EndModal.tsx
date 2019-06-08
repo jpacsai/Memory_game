@@ -4,19 +4,18 @@ import { State } from "../store";
 import {
   getMinutes,
   getSeconds,
-  getMoves,
-  getScores
+  getMoves
 } from "./../store/selectors";
+import { restart } from '../store/actions';
+
 import Modal from "./Modal";
 import Stars from "./Stars";
-
 import "./EndModal.scss";
 
 const mapStateToProps = (state: State) => ({
   min: getMinutes(state),
   sec: getSeconds(state),
   moves: getMoves(state),
-  scores: getScores(state)
 });
 
 export type EndModalProps = {
@@ -25,21 +24,26 @@ export type EndModalProps = {
   min: number;
   sec: number;
   moves: number;
-  scores: number;
+  restart: typeof restart;
 };
+
+const mapDispatchToProps = { restart };
 
 class EndModal extends React.PureComponent<EndModalProps> {
   handleClose = () => {
-    const { onClose } = this.props;
-    if (onClose) onClose();
+    const { restart, onClose } = this.props;
+    restart();
+    onClose();
   };
 
   render() {
-    const { isOpen, min, sec, moves, scores } = this.props;
+    const { isOpen, min, sec, moves } = this.props;
     if (!isOpen) return null;
+
     const time = `${min ? (min > 1 ? " minutes" : " minute") : ""} ${sec} ${
       sec > 1 ? "seconds" : "second"
     }`;
+
     return (
       <Modal
         isOpen={isOpen}
@@ -58,5 +62,5 @@ class EndModal extends React.PureComponent<EndModalProps> {
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(EndModal);
