@@ -25,7 +25,8 @@ class Modal extends React.PureComponent<ModalProps> {
   }
 
   handleClose = () => {
-    this.props.onClose!();
+    const { onClose } = this.props;
+    if (onClose) onClose();
   };
 
   handleClick = (event: any) => {
