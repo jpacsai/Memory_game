@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Select from "react-select";
-import { cardImages } from "../config";
+import { cardImages, defaultDeck } from "../config";
 import { createDeck } from "../store/actions";
 
 export type ThemeSelectProps = {
@@ -16,13 +16,15 @@ const options = cardImages.map(image => ({
   label: image.name.charAt(0).toUpperCase() + image.name.slice(1)
 }));
 
+const defaultValue = options.filter(option => option.value === defaultDeck);
+
 class ThemeSelect extends React.PureComponent<ThemeSelectProps> {
   handleChange = (selectedOption: any) => {
     if (this.props.onChange) this.props.onChange(selectedOption);
   };
 
   render() {
-    return <Select options={options} onChange={this.handleChange} />;
+    return <Select options={options} onChange={this.handleChange} defaultValue={defaultValue}/>;
   }
 }
 
