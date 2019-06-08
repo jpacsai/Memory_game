@@ -4,6 +4,7 @@ import { GameState, Card } from '../types';
 
 export const resolveGameState = (gameState: GameState) =>
   action(actionNames.RESOLVE_GAME_STATE, gameState);
+export const resolveTheme = (theme: string) => action(actionNames.RESOLVE_THEME, theme);
 export const resolveDeck = (cards: Card[]) => action(actionNames.RESOLVE_DECK, cards);
 export const resolveOpenCard = (card: number) => action(actionNames.OPEN_CARD, card);
 export const closeOpenedCards = () => action(actionNames.CLOSE_CARDS);
