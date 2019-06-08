@@ -5,8 +5,6 @@ export const getGameState = (state: State) => state.gameState;
 
 export const getTheme = (state: State) => state.theme;
 
-export const getDeck = (state: State) => state.deck;
-
 export const getOpenCards = (state: State) => state.openCards;
 
 export const getMatchedCards = (state: State) => state.matchedCards;
