@@ -11,4 +11,18 @@
       margin-bottom: 0.5rem;
     }
   }
+
+  .start-button-container {
+    text-align: center;
+
+    .start-button {
+      padding: 0.75rem 1.5rem;
+      display: inline-block;
+      background-color: aqua;
+      margin-top: 1rem;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1.25rem;
+    }
+  }
 }
