@@ -30,6 +30,7 @@ class Deck extends React.PureComponent<DeckProps> {
   }
 
   componentDidUpdate(prevProps: DeckProps) {
+    // shuffle deck when new game starts
     if (
       this.props.gameState !== prevProps.gameState &&
       this.props.gameState === GameState.START
@@ -37,6 +38,7 @@ class Deck extends React.PureComponent<DeckProps> {
       const shuffledDeck = shuffle(this.state.deck);
       this.setState({ deck: shuffledDeck });
     }
+    // create new deck when theme is changed and shuffle it
     if (this.props.theme !== prevProps.theme) {
       const newDeck = createDeck(this.props.theme);
       const shuffledNewDeck = shuffle(newDeck);

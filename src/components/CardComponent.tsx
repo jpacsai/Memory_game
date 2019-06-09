@@ -40,7 +40,7 @@ class CardComponent extends React.PureComponent<CardComponentProps> {
     const open = !!openCards.find(openCard => openCard.cardId === card.cardId);
     const matched = matchedCards.includes(card.imageId);
     return (
-      <div className="CardComponent" >
+      <div className={classnames("CardComponent", theme)} >
         <div
           onClick={this.handleClick}
           className={classnames('card-container', open ? 'open' : matched ? 'matched' : '')}
