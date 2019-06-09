@@ -10,6 +10,5 @@ export default (theme: string): Card[] => {
     return [...deck, card, card]
   }, []);
   const deck = deckUrls.map((url, index) => ({ ...url, cardId: index }));
-  console.log(deck);
   return deck;
 }

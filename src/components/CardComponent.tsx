@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { State } from "../store";
 import classnames from 'classnames';
 import { GameState, Card as CardType } from '../types';
-import { getOpenCards, getMatchedCards, getGameState } from './../store/selectors';
+import { getOpenCards, getMatchedCards, getGameState, getTheme } from './../store/selectors';
 import { handleOpenCard } from '../store/actions';
 
 import './CardComponent.scss';
@@ -13,12 +13,14 @@ export type CardComponentProps = {
   openCards: CardType[];
   matchedCards: number[];
   gameState: GameState;
+  theme: string;
   handleOpenCard: typeof handleOpenCard;
 }
 
 const mapStateToProps = (state: State) => ({
   openCards: getOpenCards(state),
   matchedCards: getMatchedCards(state),
+  theme: getTheme(state),
   gameState: getGameState(state)
 });
 
@@ -33,7 +35,7 @@ class CardComponent extends React.PureComponent<CardComponentProps> {
   }
 
   render() {
-    const { card, openCards, matchedCards } = this.props;
+    const { card, openCards, matchedCards, theme } = this.props;
     if (!card) return null;
     const open = !!openCards.find(openCard => openCard.cardId === card.cardId);
     const matched = matchedCards.includes(card.imageId);

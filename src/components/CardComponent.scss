@@ -1,3 +1,5 @@
+@import '../variables.scss';
+
 .CardComponent {
   cursor: pointer;
   
@@ -8,7 +10,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 10%;
-    background-color: white;
+    background-color: lightblue;
 
     > img {
       width: 75%;
@@ -23,11 +25,20 @@
 
   & .open {
     @extend .disable-click;
-    background-color: lightblue;
+    background-color: white;
+
+    & .developer {
+      background-color: $dev-background;
+    }
+    
   }
 
   & .matched {
     @extend .disable-click;
     background-color: #556080;
+
+    & .developer {
+      background-color: $dev-background-matched;
+    }
   }
 }
