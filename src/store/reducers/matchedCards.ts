@@ -4,7 +4,7 @@ import { Actions } from '../actionTypes';
 export default (state: number[] = [], action: Actions): number[] => {
   switch (action.type) {
     case MATCHED_CARDS:
-      return [...state].concat(action.payload);
+      return [...state, action.payload];
     case CLEAR:
       return [];
     default:

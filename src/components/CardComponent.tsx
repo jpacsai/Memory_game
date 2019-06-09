@@ -10,7 +10,7 @@ import './CardComponent.scss';
 
 export type CardComponentProps = {
   card: CardType;
-  openCards: number[];
+  openCards: CardType[];
   matchedCards: number[];
   gameState: GameState;
   handleOpenCard: typeof handleOpenCard;
@@ -29,14 +29,14 @@ class CardComponent extends React.PureComponent<CardComponentProps> {
 
   handleClick = () => {
     const { card, gameState, openCards } = this.props;
-    if (gameState !== GameState.PAUSED && openCards.length < 2) this.props.handleOpenCard(card.id);
+    if (gameState !== GameState.PAUSED && openCards.length < 2) this.props.handleOpenCard(card);
   }
 
   render() {
     const { card, openCards, matchedCards } = this.props;
     if (!card) return null;
-    const open = openCards.includes(card.id);
-    const matched = matchedCards.includes(card.id);
+    const open = !!openCards.find(openCard => openCard.cardId === card.cardId);
+    const matched = matchedCards.includes(card.imageId);
     return (
       <div className="CardComponent" >
         <div

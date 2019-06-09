@@ -32,10 +32,6 @@ class App extends React.PureComponent<AppProps, AppState> {
     start: true,
   }
 
-  componentDidMount() {
-    //this.props.fetchInitData();
-  }
-
   handleStartClose = () => {
     this.setState({ start: false });
   }

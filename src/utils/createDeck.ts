@@ -5,12 +5,11 @@ export default (theme: string): Card[] => {
   const image = themes.find((t: Cards) => t.name === theme);
   if (!image) return [];
   const urls = image.images;
-  const deckURLs = urls.reduce((deck: string[], url: string) => [...deck, url, url], []);
-  const deck = deckURLs.map((url, index: number): Card => (
-    {
-      id: index,
-      url
-    }
-  ));
+  const deckUrls = urls.reduce((deck: {url: string, imageId: number}[], url: string, index: number) => {
+    const card = { url, imageId: index }
+    return [...deck, card, card]
+  }, []);
+  const deck = deckUrls.map((url, index) => ({ ...url, cardId: index }));
+  console.log(deck);
   return deck;
 }

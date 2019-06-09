@@ -11,6 +11,7 @@ export type Cards = {
 }
 
 export type Card = {
-  id: number;
+  cardId: number;
+  imageId: number;
   url: string;
 }

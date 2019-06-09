@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { State } from "../store";
-import { GameState, Card as CardType } from "../types";
-import { getGameState, getDeck, getTheme } from "../store/selectors";
+import { GameState } from "../types";
+import { getGameState, getTheme } from "../store/selectors";
 import createDeck from "../utils/createDeck";
 import shuffle from "../utils/shuffle";
 
@@ -12,13 +12,11 @@ import "./Deck.scss";
 export type DeckProps = {
   theme: string;
   gameState: GameState;
-  deck: CardType[];
 };
 
 const mapStateToProps = (state: State) => ({
   theme: getTheme(state),
-  gameState: getGameState(state),
-  deck: getDeck(state) as CardType[]
+  gameState: getGameState(state)
 });
 
 class Deck extends React.PureComponent<DeckProps> {
@@ -32,27 +30,22 @@ class Deck extends React.PureComponent<DeckProps> {
   }
 
   componentDidUpdate(prevProps: DeckProps) {
-    /* this.props.theme !== prevProps.theme
-          ? shuffle(createDeck(this.props.theme)) */
     if (
       this.props.gameState !== prevProps.gameState &&
       this.props.gameState === GameState.START
     ) {
-      const newDeck = shuffle(this.state.deck);
-      console.log(newDeck);
-      this.setState({ deck: newDeck });
+      const shuffledDeck = shuffle(this.state.deck);
+      this.setState({ deck: shuffledDeck });
     }
     if (this.props.theme !== prevProps.theme) {
       const newDeck = createDeck(this.props.theme);
-      const s = shuffle(newDeck);
-      console.log(newDeck);
-      this.setState({ deck: s });
+      const shuffledNewDeck = shuffle(newDeck);
+      this.setState({ deck: shuffledNewDeck });
     }
   }
 
   render() {
     const { deck } = this.state;
-
     if (deck.length === 0) return null;
     return (
       <div className="Deck">
