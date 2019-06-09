@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { resolveTheme } from "../store/actions";
 
 import Modal from "./Modal";
-import "./StartModal.scss";
 import ThemeSelect from "./ThemeSelect";
+import "./StartModal.scss";
 
 export type StartModalProps = {
   isOpen: boolean;
