@@ -32,6 +32,15 @@ class App extends React.PureComponent<AppProps, AppState> {
     start: true,
   }
 
+  componentDidUpdate(prevProps: AppProps) {
+    if (
+      this.props.gameState !== prevProps.gameState &&
+      this.props.gameState === GameState.START
+    ) {
+      this.setState({ start: true });
+    }
+  }
+
   handleStartClose = () => {
     this.setState({ start: false });
   }
