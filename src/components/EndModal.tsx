@@ -10,6 +10,7 @@ import { restart } from '../store/actions';
 
 import Modal from "./Modal";
 import Stars from "./Stars";
+import Button from "./Button";
 import "./EndModal.scss";
 
 const mapStateToProps = (state: State) => ({
@@ -29,7 +30,7 @@ export type EndModalProps = {
 const mapDispatchToProps = { restart };
 
 class EndModal extends React.PureComponent<EndModalProps> {
-  handleClose = () => {
+  handleSubmit = () => {
     const { restart } = this.props;
     restart();
   };
@@ -45,7 +46,6 @@ class EndModal extends React.PureComponent<EndModalProps> {
     return (
       <Modal
         isOpen={isOpen}
-        onClose={this.handleClose}
         title="Congratulations!"
         modalClassName="EndModal"
       >
@@ -53,6 +53,7 @@ class EndModal extends React.PureComponent<EndModalProps> {
           You won with <span>{moves} moves</span> in <span>{time}</span>
         </div>
         <Stars />
+        <Button text="Start new game" centered onClick={this.handleSubmit} />
       </Modal>
     );
   }

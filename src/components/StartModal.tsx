@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { resolveTheme } from "../store/actions";
 
 import Modal from "./Modal";
+import Button from "./Button";
 import ThemeSelect from "./ThemeSelect";
 import "./StartModal.scss";
 
@@ -39,11 +40,7 @@ class StartModal extends React.PureComponent<StartModalProps> {
           <span>Choose a theme</span>
           <ThemeSelect onChange={this.handleChange} />
         </div>
-        <div className="start-button-container">
-          <div className="start-button" onClick={this.handleSubmit}>
-            Start
-          </div>
-        </div>
+        <Button text="Start" centered onClick={this.handleSubmit} />
       </Modal>
     );
   }
