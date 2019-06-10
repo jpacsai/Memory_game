@@ -5,4 +5,9 @@ html {
   align-items: center;
   justify-content: center;
   font-family: 'Roboto', sans-serif;
+
+  button {
+    border: none;
+    font-family: unset;
+  }
 }
