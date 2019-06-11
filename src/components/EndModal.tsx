@@ -10,7 +10,7 @@ import { restart } from '../store/actions';
 
 import Modal from "./Modal";
 import Stars from "./Stars";
-import Button from "./Button";
+import MyButton from "./MyButton";
 import "./EndModal.scss";
 
 const mapStateToProps = (state: State) => ({
@@ -53,7 +53,7 @@ class EndModal extends React.PureComponent<EndModalProps> {
           You won with <span>{moves} moves</span> in <span>{time}</span>
         </div>
         <Stars />
-        <Button text="Start new game" centered onClick={this.handleSubmit} />
+        <MyButton color="primary" text="Start new game" centered marginTop onClick={this.handleSubmit} />
       </Modal>
     );
   }

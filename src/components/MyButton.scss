@@ -1,0 +1,14 @@
+.MyButton {
+  &.centered {
+    display: block;
+    margin: 0 auto;
+  }
+
+  &.marginTop {
+    margin-top: 1rem;
+  }
+
+  &.marginBottom {
+    margin-bottom: 1rem;
+  }
+}
