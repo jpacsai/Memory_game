@@ -1,11 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { State } from "../store";
 import classnames from 'classnames';
+import { State } from "../store";
 import { GameState, Card as CardType } from '../types';
 import { getOpenCards, getMatchedCards, getGameState, getTheme } from './../store/selectors';
 import { handleOpenCard } from '../store/actions';
 
+import Paper from '@material-ui/core/Paper';
 import './CardComponent.scss';
 
 export type CardComponentProps = {
@@ -41,12 +42,12 @@ class CardComponent extends React.PureComponent<CardComponentProps> {
     const matched = matchedCards.includes(card.imageId);
     return (
       <div className={classnames("CardComponent", theme)} >
-        <div
+        <Paper
           onClick={this.handleClick}
           className={classnames('card-container', open ? 'open' : matched ? 'matched' : '')}
          >
           <img src={card.url} alt=""/>
-        </div>
+        </Paper>
       </div>
     );
   }
