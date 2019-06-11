@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import classnames from "classnames";
-
+import Paper from '@material-ui/core/Paper';
 import "./Modal.scss";
 
 export type ModalProps = {
@@ -39,8 +39,8 @@ class Modal extends React.PureComponent<ModalProps> {
     const { children, title, isOpen, modalClassName, onClose } = this.props;
     if (!isOpen) return null;
     const Modal = (
-      <div className="ModalContainer">
-        <div className={classnames("Modal", modalClassName)} ref="modal">
+      <div className="ModalContainer" ref="modal">
+        <Paper className={classnames("Modal", modalClassName)}>
           <header>
             { title && 
               <span className="title">{title}</span>
@@ -48,7 +48,7 @@ class Modal extends React.PureComponent<ModalProps> {
             {onClose && <i className="far fa-times-circle" onClick={this.handleClose} />}
           </header>
           <main>{children}</main>
-        </div>
+        </Paper>
       </div>
     );
     return ReactDOM.createPortal(Modal, document.getElementById(
