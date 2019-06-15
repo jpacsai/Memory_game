@@ -1,5 +1,9 @@
+@import '../variables.scss';
+
 .ThemePreview {
-  padding: 1rem 0;
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: $grey;
 
   .grid {
     margin: -1vmin;
