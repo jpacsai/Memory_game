@@ -6,7 +6,7 @@ import { getGameState, getTheme } from "../store/selectors";
 import createDeck from "../utils/createDeck";
 import shuffle from "../utils/shuffle";
 
-import CardComponent from "./CardComponent";
+import CardContainer from "./CardContainer";
 import "./Deck.scss";
 
 export type DeckProps = {
@@ -54,7 +54,7 @@ class Deck extends React.PureComponent<DeckProps> {
         <div className="grid-container">
           <div className="card-grid">
             {deck.map((card, index) => (
-              <CardComponent key={index} card={card} />
+              <CardContainer key={index} card={card} />
             ))}
           </div>
         </div>

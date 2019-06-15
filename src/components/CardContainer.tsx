@@ -3,13 +3,13 @@ import { connect } from "react-redux";
 import classnames from 'classnames';
 import { State } from "../store";
 import { GameState, Card as CardType } from '../types';
-import { getOpenCards, getMatchedCards, getGameState, getTheme } from './../store/selectors';
+import { getOpenCards, getMatchedCards, getGameState, getTheme } from '../store/selectors';
 import { handleOpenCard } from '../store/actions';
 
 import Paper from '@material-ui/core/Paper';
-import './CardComponent.scss';
+import './CardContainer.scss';
 
-export type CardComponentProps = {
+export type CardContainerProps = {
   card: CardType;
   openCards: CardType[];
   matchedCards: number[];
@@ -27,7 +27,7 @@ const mapStateToProps = (state: State) => ({
 
 const mapDispatchToProps = { handleOpenCard };
 
-class CardComponent extends React.PureComponent<CardComponentProps> {
+class CardContainer extends React.PureComponent<CardContainerProps> {
   timer: NodeJS.Timeout | null = null;
 
   handleClick = () => {
@@ -41,7 +41,7 @@ class CardComponent extends React.PureComponent<CardComponentProps> {
     const open = !!openCards.find(openCard => openCard.cardId === card.cardId);
     const matched = matchedCards.includes(card.imageId);
     return (
-      <div className={classnames("CardComponent", theme)} >
+      <div className={classnames("CardContainer", theme)} >
         <Paper
           onClick={this.handleClick}
           className={classnames('card-container', open ? 'open' : matched ? 'matched' : '')}
@@ -53,4 +53,4 @@ class CardComponent extends React.PureComponent<CardComponentProps> {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CardComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(CardContainer);
