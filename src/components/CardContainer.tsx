@@ -6,7 +6,7 @@ import { GameState, Card as CardType } from '../types';
 import { getOpenCards, getMatchedCards, getGameState, getTheme } from '../store/selectors';
 import { handleOpenCard } from '../store/actions';
 
-import Paper from '@material-ui/core/Paper';
+import Card from './Card';
 import './CardContainer.scss';
 
 export type CardContainerProps = {
@@ -41,13 +41,8 @@ class CardContainer extends React.PureComponent<CardContainerProps> {
     const open = !!openCards.find(openCard => openCard.cardId === card.cardId);
     const matched = matchedCards.includes(card.imageId);
     return (
-      <div className={classnames("CardContainer", theme)} >
-        <Paper
-          onClick={this.handleClick}
-          className={classnames('card-container', open ? 'open' : matched ? 'matched' : '')}
-         >
-          <img src={card.url} alt=""/>
-        </Paper>
+      <div className="CardContainer" >
+        <Card card={card} open={open} matched={matched} theme={theme} onClick={this.handleClick} />
       </div>
     );
   }

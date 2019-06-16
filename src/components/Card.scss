@@ -1,0 +1,37 @@
+@import '../variables.scss';
+
+.Card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10%;
+  background-color: lightblue;
+
+  img {
+    width: 65%;
+    height: 65%;
+    user-select: none;
+  }
+}
+
+.open,
+.matched {
+  pointer-events: none;
+}
+
+.fruits {
+  &.open { background-color: $fruits-background; }
+  &.matched { background-color: $fruits-background-matched; }
+}
+
+.space {
+  &.open { background-color: $space-background; }
+  &.matched { background-color: $space-background-matched; }
+}
+
+.developer {
+  &.open { background-color: $dev-background; }
+  &.matched { background-color: $dev-background-matched; }
+}
