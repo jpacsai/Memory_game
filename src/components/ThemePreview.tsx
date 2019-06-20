@@ -1,6 +1,8 @@
 import React from "react";
 import { Cards } from "../types";
 import { themes } from "../config";
+
+import Card from './Card';
 import "./ThemePreview.scss";
 
 export type ThemePreviewProps = {
@@ -12,18 +14,14 @@ export default class ThemePreview extends React.PureComponent<
 > {
   render() {
     const { selectedOption } = this.props;
-    const image = themes.find((t: Cards) => t.name === selectedOption);
-    if (!image) return [];
-    const urls = image.images;
+    const theme = themes.find((t: Cards) => t.name === selectedOption);
+    if (!theme) return [];
+    const urls = theme.images;
     return (
       <div className="ThemePreview">
         <div className="grid">
           {urls.map((url, index) => (
-            <div key={index} className="preview-card">
-              <div className="card-container">
-                <img src={url} alt="" />
-              </div>
-            </div>
+            <Card key={index} url={url} matched theme={theme.name} />
           ))}
         </div>
       </div>

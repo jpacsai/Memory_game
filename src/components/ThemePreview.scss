@@ -2,38 +2,17 @@
 
 .ThemePreview {
   margin-top: 1rem;
-  padding: 1rem;
-  background-color: $grey;
+  margin-bottom: 1rem;
 
   .grid {
-    margin: -1vmin;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(23.5%, 1fr));
     grid-auto-rows: 1fr;
+    grid-gap: 0.35rem;
 
     > *:first-child {
       grid-row: 1 / 1;
       grid-column: 1 / 1;
-    }
-
-    .preview-card {
-      margin: 1vmin;
-      
-      > .card-container {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 10%;
-        background-color: lightblue;
-
-        > img {
-          width: 65%;
-          height: 65%;
-          user-select: none;
-        }
-      }
     }
   }
 
