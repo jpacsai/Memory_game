@@ -69,7 +69,7 @@ export const themes = [
       "https://res.cloudinary.com/jutzee/image/upload/v1561049520/memory-game/summer/flip_flops.svg",
       "https://res.cloudinary.com/jutzee/image/upload/v1561050117/memory-game/summer/drink.png",
       "https://res.cloudinary.com/jutzee/image/upload/v1561049519/memory-game/summer/bikini.svg",
-      "https://res.cloudinary.com/jutzee/image/upload/v1561049546/memory-game/summer/pool.svg",
+      "https://res.cloudinary.com/jutzee/image/upload/v1561049480/memory-game/summer/palm.svg",
       "https://res.cloudinary.com/jutzee/image/upload/v1561049546/memory-game/summer/cocktail.svg",
       "https://res.cloudinary.com/jutzee/image/upload/v1561049697/memory-game/summer/boat.png"
     ]
