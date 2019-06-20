@@ -35,3 +35,8 @@
   &.open { background-color: $dev-background; }
   &.matched { background-color: $dev-background-matched; }
 }
+
+.dogs {
+  &.open { background-color: $dogs-background; }
+  &.matched { background-color: $dogs-background-matched; }
+}

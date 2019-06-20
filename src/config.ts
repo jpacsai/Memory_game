@@ -23,6 +23,19 @@ export const themes = [
     ]
   },
   {
+    name: "developer",
+    images: [
+      "https://res.cloudinary.com/jutzee/image/upload/v1559855312/memory-game/dev/html-5.svg",
+      "https://res.cloudinary.com/jutzee/image/upload/v1559855310/memory-game/dev/css.svg",
+      "https://res.cloudinary.com/jutzee/image/upload/v1559855313/memory-game/dev/javascript.svg",
+      "https://res.cloudinary.com/jutzee/image/upload/v1559855315/memory-game/dev/react.svg",
+      "https://res.cloudinary.com/jutzee/image/upload/v1559855316/memory-game/dev/sass.svg",
+      "https://res.cloudinary.com/jutzee/image/upload/v1559855317/memory-game/dev/typescript.svg",
+      "https://res.cloudinary.com/jutzee/image/upload/v1559855311/memory-game/dev/github.svg",
+      "https://res.cloudinary.com/jutzee/image/upload/v1559855314/memory-game/dev/nodejs.svg"
+    ]
+  },
+  {
     name: "space",
     images: [
       "https://res.cloudinary.com/jutzee/image/upload/v1559854133/memory-game/space/space-ship.svg",
@@ -36,16 +49,16 @@ export const themes = [
     ]
   },
   {
-    name: "developer",
+    name: "dogs",
     images: [
-      "https://res.cloudinary.com/jutzee/image/upload/v1559855312/memory-game/dev/html-5.svg",
-      "https://res.cloudinary.com/jutzee/image/upload/v1559855310/memory-game/dev/css.svg",
-      "https://res.cloudinary.com/jutzee/image/upload/v1559855313/memory-game/dev/javascript.svg",
-      "https://res.cloudinary.com/jutzee/image/upload/v1559855315/memory-game/dev/react.svg",
-      "https://res.cloudinary.com/jutzee/image/upload/v1559855316/memory-game/dev/sass.svg",
-      "https://res.cloudinary.com/jutzee/image/upload/v1559855317/memory-game/dev/typescript.svg",
-      "https://res.cloudinary.com/jutzee/image/upload/v1559855311/memory-game/dev/github.svg",
-      "https://res.cloudinary.com/jutzee/image/upload/v1559855314/memory-game/dev/nodejs.svg"
+      "https://res.cloudinary.com/jutzee/image/upload/v1561048757/memory-game/dogs/bergamasco.svg",
+      "https://res.cloudinary.com/jutzee/image/upload/v1561048401/memory-game/dogs/rottweiler.svg",
+      "https://res.cloudinary.com/jutzee/image/upload/v1561048401/memory-game/dogs/saint_bernard.svg",
+      "https://res.cloudinary.com/jutzee/image/upload/v1561048354/memory-game/dogs/french_poodle.svg",
+      "https://res.cloudinary.com/jutzee/image/upload/v1561048291/memory-game/dogs/french_bulldog.svg",
+      "https://res.cloudinary.com/jutzee/image/upload/v1561048291/memory-game/dogs/008-corgi.svg",
+      "https://res.cloudinary.com/jutzee/image/upload/v1561048291/memory-game/dogs/pug.svg",
+      "https://res.cloudinary.com/jutzee/image/upload/v1561048291/memory-game/dogs/bulldog.svg"
     ]
   }
 ] as Cards[];
