@@ -40,3 +40,8 @@
   &.open { background-color: $dogs-background; }
   &.matched { background-color: $dogs-background-matched; }
 }
+
+.summer {
+  &.open { background-color: $summer-background; }
+  &.matched { background-color: $summer-background-matched; }
+}
