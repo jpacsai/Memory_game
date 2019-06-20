@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import classnames from 'classnames';
 import { State } from "../store";
 import { GameState, Card as CardType } from '../types';
 import { getOpenCards, getMatchedCards, getGameState, getTheme } from '../store/selectors';
@@ -41,8 +40,8 @@ class CardContainer extends React.PureComponent<CardContainerProps> {
     const open = !!openCards.find(openCard => openCard.cardId === card.cardId);
     const matched = matchedCards.includes(card.imageId);
     return (
-      <div className="CardContainer" >
-        <Card card={card} open={open} matched={matched} theme={theme} onClick={this.handleClick} />
+      <div className="CardContainer">
+        <Card url={card.url} open={open} matched={matched} theme={theme} onClick={this.handleClick}/>
       </div>
     );
   }

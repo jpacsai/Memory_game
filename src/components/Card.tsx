@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import './Card.scss';
 
 export type CardProps = {
-  card: CardType;
+  url: string;
   theme: string;
   open?: boolean;
   matched?: boolean;
@@ -15,18 +15,18 @@ export type CardProps = {
 
 class Card extends React.PureComponent<CardProps> {
   handleClick = () => {
-    const { card, onClick } = this.props;
-    if (onClick) onClick(card);
+    const { onClick, open, matched } = this.props;
+    if (onClick && (!open || !matched)) onClick();
   };
 
   render() {
-    const { card, theme, open, matched, onClick } = this.props;
+    const { theme, open, matched, url } = this.props;
     return (
       <div
         onClick={this.handleClick}
         className={classnames('Card', theme, open ? 'open' : matched ? 'matched' : '')}
       >
-        <img src={card.url} alt='' />
+        <img src={url} alt='' />
       </div>
     );
   }
