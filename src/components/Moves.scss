@@ -1,8 +1,7 @@
 @import '../variables.scss';
 
 .Moves {
-  // min-width: 8.5rem;
-  background-color: lightcoral;
+  // background-color: lightcoral;
 
   @media screen and (orientation:portrait) {
     grid-column: 2 / 4;

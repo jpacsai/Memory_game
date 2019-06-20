@@ -17,7 +17,7 @@
     width: 100%;
     height: 90vh;
     display: flex;
-    background-color: teal;
+    // background-color: teal;
 
     @media screen and (orientation:portrait) {
       flex-direction: column;
@@ -26,19 +26,6 @@
   
     @media screen and (orientation:landscape) {
       flex-direction: row;
-    }
-  }
-
-  footer {
-    display: block;
-    background-color: black;
-
-    @media screen and (orientation:portrait) {
-      height: 0;
-    }
-  
-    @media screen and (orientation:landscape) {
-      width: 15vw;
     }
   }
 }
