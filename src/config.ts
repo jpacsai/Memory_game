@@ -20,7 +20,11 @@ export const themes = [
       "https://res.cloudinary.com/jutzee/image/upload/v1538133256/memory-game/fruits/banana.svg",
       "https://res.cloudinary.com/jutzee/image/upload/v1538133256/memory-game/fruits/cherry.svg",
       "https://res.cloudinary.com/jutzee/image/upload/v1538133256/memory-game/fruits/avocado.svg",
-    ]
+    ],
+    style: {
+      open: 'white',
+      matched: '#f5f33dde'
+    }
   },
   {
     name: "developer",
@@ -33,7 +37,11 @@ export const themes = [
       "https://res.cloudinary.com/jutzee/image/upload/v1559855317/memory-game/dev/typescript.svg",
       "https://res.cloudinary.com/jutzee/image/upload/v1559855311/memory-game/dev/github.svg",
       "https://res.cloudinary.com/jutzee/image/upload/v1559855314/memory-game/dev/nodejs.svg"
-    ]
+    ],
+    style: {
+      open: '#3f4a43',
+      matched: '#f2f2f2'
+    }
   },
   {
     name: "cars",
@@ -46,7 +54,11 @@ export const themes = [
       "https://res.cloudinary.com/jutzee/image/upload/v1561109728/memory-game/cars/Volkswagen.svg",
       "https://res.cloudinary.com/jutzee/image/upload/v1561110881/memory-game/cars/Tesla.svg",
       "https://res.cloudinary.com/jutzee/image/upload/v1561109725/memory-game/cars/Mercedes.svg"
-    ]
+    ],
+    style: {
+      open: 'white',
+      matched: '#a8a8a8'
+    }
   },
   {
     name: "space",
@@ -59,7 +71,11 @@ export const themes = [
       "https://res.cloudinary.com/jutzee/image/upload/v1559854282/memory-game/space/comet-1.svg",
       "https://res.cloudinary.com/jutzee/image/upload/v1559854127/memory-game/space/venus.svg",
       "https://res.cloudinary.com/jutzee/image/upload/v1559854126/memory-game/space/ursa-major.svg"
-    ]
+    ],
+    style: {
+      open: 'white',
+      matched: '#556080'
+    }
   },
   {
     name: "dogs",
@@ -72,7 +88,11 @@ export const themes = [
       "https://res.cloudinary.com/jutzee/image/upload/v1561048291/memory-game/dogs/008-corgi.svg",
       "https://res.cloudinary.com/jutzee/image/upload/v1561048291/memory-game/dogs/pug.svg",
       "https://res.cloudinary.com/jutzee/image/upload/v1561048291/memory-game/dogs/bulldog.svg"
-    ]
+    ],
+    style: {
+      open: 'white',
+      matched: '#d3973885'
+    }
   },
   {
     name: "summer",
@@ -85,6 +105,15 @@ export const themes = [
       "https://res.cloudinary.com/jutzee/image/upload/v1561049480/memory-game/summer/palm.svg",
       "https://res.cloudinary.com/jutzee/image/upload/v1561049546/memory-game/summer/cocktail.svg",
       "https://res.cloudinary.com/jutzee/image/upload/v1561049697/memory-game/summer/boat.png"
-    ]
+    ],
+    style: {
+      open: 'white',
+      matched: '#6ed5e2bd'
+    }
   }
 ] as Cards[];
+
+export const basicCardStyle = {
+  open: 'orange',
+  matched: 'pink'
+}

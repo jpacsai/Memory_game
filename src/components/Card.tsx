@@ -1,8 +1,5 @@
 import React from 'react';
-import classnames from 'classnames';
-import { Card as CardType } from '../types';
-
-import Paper from '@material-ui/core/Paper';
+import getThemeStyle from '../utils/getThemeStyle';
 import './Card.scss';
 
 export type CardProps = {
@@ -15,18 +12,20 @@ export type CardProps = {
 
 class Card extends React.PureComponent<CardProps> {
   handleClick = () => {
-    const { onClick, open, matched } = this.props;
-    if (onClick && (!open || !matched)) onClick();
+    const { onClick } = this.props;
+    if (onClick) onClick();
   };
 
   render() {
-    const { theme, open, matched, url } = this.props;
+    const { open, matched, url } = this.props;
+    const style = getThemeStyle(this.props.theme);
     return (
       <div
         onClick={this.handleClick}
-        className={classnames('Card', theme, open ? 'open' : matched ? 'matched' : '')}
+        style={{ backgroundColor: open ? style.open : matched ? style.matched : 'black' }}
+        className="Card"
       >
-        <img src={url} alt='' />
+        <img src={url} alt="" />
       </div>
     );
   }
