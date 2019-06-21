@@ -45,3 +45,8 @@
   &.open { background-color: $summer-background; }
   &.matched { background-color: $summer-background-matched; }
 }
+
+.cars {
+  &.open { background-color: $cars-background; }
+  &.matched { background-color: $cars-background-matched; }
+}

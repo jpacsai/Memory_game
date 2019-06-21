@@ -36,6 +36,19 @@ export const themes = [
     ]
   },
   {
+    name: "cars",
+    images: [
+      "https://res.cloudinary.com/jutzee/image/upload/v1561109725/memory-game/cars/Skoda.svg",
+      "https://res.cloudinary.com/jutzee/image/upload/v1561109728/memory-game/cars/Toyota.svg",
+      "https://res.cloudinary.com/jutzee/image/upload/v1561109725/memory-game/cars/Nissan.svg",
+      "https://res.cloudinary.com/jutzee/image/upload/v1561109725/memory-game/cars/Bmw.svg",
+      "https://res.cloudinary.com/jutzee/image/upload/v1561109725/memory-game/cars/Opel.svg",
+      "https://res.cloudinary.com/jutzee/image/upload/v1561109728/memory-game/cars/Volkswagen.svg",
+      "https://res.cloudinary.com/jutzee/image/upload/v1561110881/memory-game/cars/Tesla.svg",
+      "https://res.cloudinary.com/jutzee/image/upload/v1561109725/memory-game/cars/Mercedes.svg"
+    ]
+  },
+  {
     name: "space",
     images: [
       "https://res.cloudinary.com/jutzee/image/upload/v1559854133/memory-game/space/space-ship.svg",
