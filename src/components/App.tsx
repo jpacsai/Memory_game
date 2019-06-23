@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from 'react-redux';
 import { State } from "../store";
 import { GameState } from "../types";
-import { fetchInitData, clear } from "../store/actions";
+import { createDeck, clear } from "../store/actions";
 import { getGameState } from './../store/selectors';
 
 import StartModal from './StartModal';
@@ -16,7 +16,7 @@ export type AppState = {
 }
 
 export type AppProps = {
-  fetchInitData: typeof fetchInitData;
+  createDeck: typeof createDeck;
   clear: typeof clear;
   gameState: GameState;
 };
@@ -25,11 +25,15 @@ const mapStateToProps = (state: State) => ({
   gameState: getGameState(state)
 });
 
-const mapDispatchToProps = { fetchInitData, clear };
+const mapDispatchToProps = { createDeck, clear };
 
 class App extends React.PureComponent<AppProps, AppState> {
   state = {
     start: true,
+  }
+
+  componentDidMount() {
+    this.props.createDeck();
   }
 
   componentDidUpdate(prevProps: AppProps) {

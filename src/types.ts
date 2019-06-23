@@ -14,7 +14,13 @@ export type Cards = {
 export type Card = {
   cardId: number;
   imageId: number;
-  url: string;
+  status: CardStatus;
+}
+
+export enum CardStatus {
+  OPEN = 'open',
+  CLOSED = 'closed',
+  MATCHED = 'matched'
 }
 
 export type CardStyle = {

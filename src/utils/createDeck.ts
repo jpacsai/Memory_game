@@ -1,14 +1,12 @@
-import { Card, Cards } from '../types';
-import { themes } from '../config';
+import { Card, CardStatus } from '../types';
 
-export default (theme: string): Card[] => {
-  const image = themes.find((t: Cards) => t.name === theme);
-  if (!image) return [];
-  const urls = image.images;
-  const deckUrls = urls.reduce((deck: {url: string, imageId: number}[], url: string, index: number) => {
-    const card = { url, imageId: index }
-    return [...deck, card, card]
-  }, []);
-  const deck = deckUrls.map((url, index) => ({ ...url, cardId: index }));
-  return deck;
-}
+export default (): Card[] => {
+  const arr = Array.from(Array(8), (x, i) => i);
+  const imageIds = arr.reduce((sum, _, i) => [...sum, i, i], [] as number[]);
+  const cards = imageIds.map((id, i) => ({
+    imageId: id,
+    cardId: i,
+    status: CardStatus.CLOSED
+  }));
+  return cards;
+};

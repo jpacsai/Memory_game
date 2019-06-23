@@ -1,13 +1,37 @@
 import { State } from './';
 import { createSelector } from 'reselect';
+import { CardStatus } from '../types';
 
 export const getGameState = (state: State) => state.gameState;
 
 export const getTheme = (state: State) => state.theme;
 
-export const getOpenCards = (state: State) => state.openCards;
+export const getCards = (state: State) => state.cards;
 
-export const getMatchedCards = (state: State) => state.matchedCards;
+export const getOpenCards = createSelector(
+  getCards,
+  cards => cards.filter(card => card.status === CardStatus.OPEN)
+);
+
+export const getOpenCardsCardIDs = createSelector(
+  getOpenCards,
+  cards => cards.map(card => card.cardId)
+);
+
+export const getOpenCardsImageIDs = createSelector(
+  getOpenCards,
+  cards => cards.map(card => card.imageId)
+);
+
+export const getMatchedCards = createSelector(
+  getCards,
+  cards => cards.filter(card => card.status === CardStatus.MATCHED)
+);
+
+export const getMatchedCardImageIDs = createSelector(
+  getMatchedCards,
+  cards => cards.map(card => card.imageId)
+);
 
 export const getMoves = (state: State) => state.moves;
 

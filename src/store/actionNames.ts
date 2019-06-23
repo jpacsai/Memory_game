@@ -1,8 +1,10 @@
 export const RESOLVE_GAME_STATE = "RESOLVE_GAME_STATE";
 export const RESOLVE_THEME = "RESOLVE_THEME";
+export const RESOLVE_CARD = "RESOLVE_CARD";
+export const RESOLVE_DECK = "RESOLVE_DECK";
 export const OPEN_CARD = "OPEN_CARD";
 export const CLOSE_CARDS = "CLOSE_CARDS";
-export const MATCHED_CARDS = "MATCHED_CARDS";
+export const MATCH_CARDS = "MATCH_CARDS";
 export const RESOLVE_MOVE = "RESOLVE_MOVE";
 export const RESOLVE_TIME = "RESOLVE_TIME";
 export const RESOLVE_PAUSE = "RESOLVE_PAUSE";
