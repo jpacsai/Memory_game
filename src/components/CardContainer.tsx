@@ -2,14 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { State } from '../store';
-import { GameState, Card as CardType } from '../types';
+import { Card as CardType, GameState } from '../types';
 import {
   getOpenCardsCardIDs,
   getMatchedCardImageIDs,
   getGameState,
   getTheme
 } from '../store/selectors';
-import { handleOpenCard } from '../store/actions';
+import { handleOpenCard, startTimer } from '../store/actions';
 import getThemeImageUrls from '../utils/getThemeImageUrls';
 
 import Card from './Card';
@@ -22,24 +22,28 @@ export type CardContainerProps = {
   gameState: GameState;
   theme: string;
   handleOpenCard: typeof handleOpenCard;
+  startTimer: typeof startTimer;
 };
 
 const mapStateToProps = (state: State) => ({
   openCards: getOpenCardsCardIDs(state),
   matchedCards: getMatchedCardImageIDs(state),
-  theme: getTheme(state),
-  gameState: getGameState(state)
+  gameState: getGameState(state),
+  theme: getTheme(state)
 });
 
-const mapDispatchToProps = { handleOpenCard };
+const mapDispatchToProps = { handleOpenCard, startTimer };
 
 class CardContainer extends React.PureComponent<CardContainerProps> {
   timer: NodeJS.Timeout | null = null;
 
   handleClick = () => {
-    const { card, gameState, openCards } = this.props;
-    if (gameState !== GameState.PAUSED && openCards.length < 2)
+    const { card, openCards, gameState, startTimer } = this.props;
+    if (openCards.length < 2)
       this.props.handleOpenCard(card.cardId);
+    if (gameState === GameState.START) {
+      startTimer();
+    }
   };
 
   render() {

@@ -6,14 +6,24 @@ import { GameState } from "../types";
 import { getGameState } from './../store/selectors';
 import { restart, pauseTimer, restartTimer } from '../store/actions';
 
-import './DashboardButtons.scss';
 import PauseModal from './PauseModal';
+import RestartModal from './RestartModal';
+import './DashboardButtons.scss';
+
+export enum OpenModal {
+  PAUSE = 'pause',
+  RESTART = 'restart'
+}
 
 export type DashboardButtonsProps = {
   gameState: GameState;
   restart: typeof restart;
   pauseTimer: typeof pauseTimer;
   restartTimer: typeof restartTimer;
+}
+
+export type DashboardButtonsState = {
+  openModal: OpenModal | null;
 }
 
 const mapStateToProps = (state: State) => ({
@@ -23,33 +33,52 @@ const mapStateToProps = (state: State) => ({
 const mapDispatchToProps = { restart, pauseTimer, restartTimer };
 
 class DashboardButtons extends React.PureComponent<DashboardButtonsProps> {
+  state = {
+    openModal: null
+  }
+
+  handleOpenRestartModal = () => {
+    this.props.pauseTimer();
+    this.setState({ openModal: OpenModal.RESTART });
+  }
+
+  handleCloseRestartModal = () => {
+    this.setState({ openModal: null });
+    this.props.restartTimer();
+  }
+
+
   handleRestart = () => {
     const { gameState, restart } = this.props;
-    if (gameState === GameState.START) return; 
+    if (gameState === GameState.START) return;
     restart();
   }
 
   handlePause = () => {
-    const { gameState, pauseTimer, restartTimer} = this.props;
+    const { gameState, pauseTimer, restartTimer } = this.props;
     if (gameState === GameState.START || gameState === GameState.END) return;
-    if (gameState === GameState.GAME) {
+    if (gameState === GameState.GAME && this.state.openModal !== OpenModal.PAUSE) {
+      this.setState({ openModal: OpenModal.PAUSE });
       pauseTimer();
       return;
     }
+    this.setState({ openModal: null });
     restartTimer();
   }
 
   render() {
     const { gameState } = this.props;
+    const { openModal } = this.state;
     return (
       <Fragment>
-        <PauseModal isOpen={gameState === GameState.PAUSED} onClose={this.handlePause}/>
+        <PauseModal isOpen={openModal === OpenModal.PAUSE} onClose={this.handlePause} />
+        <RestartModal isOpen={openModal === OpenModal.RESTART} onClose={this.handleCloseRestartModal} onSubmit={this.handleRestart} />
         <div className={classnames('DashboardButtons', gameState === GameState.START || gameState === GameState.END ? 'disabled' : '')}>
           <div className='pause-button' onClick={this.handlePause}>
-            { gameState === GameState.PAUSED ? <i className="fas fa-play"/> : <i className="fas fa-pause"/>}
+            {openModal === OpenModal.PAUSE ? <i className="fas fa-play" /> : <i className="fas fa-pause" />}
           </div>
-          <div className='restart-button' onClick={this.handleRestart}>
-            <i className="fas fa-redo-alt"/>
+          <div className='restart-button' onClick={this.handleOpenRestartModal}>
+            <i className="fas fa-redo-alt" />
           </div>
         </div>
       </Fragment>

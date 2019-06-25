@@ -1,7 +1,6 @@
 export enum GameState {
   START = 'start',
   GAME = 'game',
-  PAUSED = 'paused',
   END = 'end'
 }
 
