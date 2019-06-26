@@ -21,7 +21,6 @@ class StartModal extends React.PureComponent<StartModalProps> {
   };
 
   handleSubmit = () => {
-    console.log('click start');
     this.props.onClose();
   };
 

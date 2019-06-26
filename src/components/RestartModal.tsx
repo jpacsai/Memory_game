@@ -4,8 +4,6 @@ import { restart } from '../store/actions';
 
 import Modal from "./Modal";
 import MyButton from "./MyButton";
-// import "./RestartModal.scss";
-
 
 export type RestartModalProps = {
   isOpen: boolean;
@@ -18,7 +16,6 @@ const mapDispatchToProps = { restart };
 class RestartModal extends React.PureComponent<RestartModalProps> {
   handleSubmit = () => {
     const { onSubmit } = this.props;
-    console.log('submit restart');
     onSubmit();
   };
 
@@ -31,7 +28,6 @@ class RestartModal extends React.PureComponent<RestartModalProps> {
         isOpen={isOpen}
         onClose={onClose}
         title="Restart"
-       // modalClassName="RestartModal"
       >
         <div className="info">
           Restart Modal

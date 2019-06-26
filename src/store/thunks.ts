@@ -93,7 +93,6 @@ export const handleNoMatch = (): Thunk => (dispatch, getState) => {
 };
 
 export const startTimer = (): Thunk => (dispatch, getState) => {
-  console.log('start timer start')
   timer = setInterval(() => dispatch(resolveTime()), 1000);
   dispatch(resolveGameState(GameState.GAME));
 };
@@ -103,7 +102,5 @@ export const pauseTimer = (): Thunk => (dispatch, getState) => {
 };
 
 export const restartTimer = (): Thunk => (dispatch, getState) => {
-  console.log('restarting')
-  dispatch(resolveGameState(GameState.GAME));
   timer = setInterval(() => dispatch(resolveTime()), 1000);
 };
