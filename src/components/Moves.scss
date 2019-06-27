@@ -9,32 +9,36 @@
     flex-direction: row-reverse;
     align-items: center;
     justify-content: space-evenly;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    direction: ltr;
   }
 
   @media screen and (min-width: 451px) and (orientation:portrait) {
     grid-column: 3 / 4;
     flex-direction: column;
+    display: flex;
   }
 
   @media screen and (orientation:landscape) {
     display: grid;
-    grid-template-rows: 50% 50%;
+    grid-template-rows: repeat(2, 50%);
   }
   
   .move-counter {
-    display: grid;
-    grid-template-columns: 1fr min-content;
     align-items: center;
     direction: initial;
     font-size: $small-font;
+    text-align: center;
 
     @media screen and (min-width: 451px) and (orientation:portrait) {
       font-size: $large-font;
     }
 
     @media screen and (orientation:landscape) {
-      grid-template-columns: 35% 65%;
       font-size: $large-font;
+      display: flex;
+      justify-content: center;
     }
 
     .move-value {
