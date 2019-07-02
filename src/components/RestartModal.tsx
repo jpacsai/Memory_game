@@ -24,21 +24,12 @@ class RestartModal extends React.PureComponent<RestartModalProps> {
     if (!isOpen) return null;
 
     return (
-      <Modal
-        isOpen={isOpen}
-        onClose={onClose}
-        title="Restart"
-      >
-        <div className="info">
-          Restart Modal
-        </div>
-        <MyButton color="primary" text="Restart" centered marginTop onClick={this.handleSubmit} />
+      <Modal isOpen={isOpen} onClose={onClose} title="Restart" >
+        Are you sure you want to restart the game?
+        <MyButton color="primary" text="Yes, restart" centered marginTop onClick={this.handleSubmit} />
       </Modal>
     );
   }
 }
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(RestartModal);
+export default connect(null, mapDispatchToProps)(RestartModal);
