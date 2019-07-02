@@ -84,7 +84,7 @@ export const handleMatch = (imageId: number): Thunk => (dispatch,getState) => {
   const matchedCardsNumber = getMatchedCards(getState()).length;
   if (matchedCardsNumber === 14) {
     dispatch(delayAction(resolveGameState(GameState.END), 1200));
-    clearInterval(timer);
+    dispatch(clearTimer());
   }
 };
 
@@ -92,15 +92,17 @@ export const handleNoMatch = (): Thunk => (dispatch, getState) => {
   dispatch(delayAction(closeCards(), 1000));
 };
 
+export const startGame = (): Thunk => (dispatch, getState) => {
+  dispatch(resolveGameState(GameState.GAME));
+  dispatch(startTimer());
+}
+
 export const startTimer = (): Thunk => (dispatch, getState) => {
   timer = setInterval(() => dispatch(resolveTime()), 1000);
-  dispatch(resolveGameState(GameState.GAME));
 };
 
-export const pauseTimer = (): Thunk => (dispatch, getState) => {
+export const clearTimer = (): Thunk => (dispatch, getState) => {
   clearInterval(timer);
 };
 
-export const restartTimer = (): Thunk => (dispatch, getState) => {
-  timer = setInterval(() => dispatch(resolveTime()), 1000);
-};
+

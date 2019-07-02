@@ -9,7 +9,7 @@ import {
   getGameState,
   getTheme
 } from '../store/selectors';
-import { handleOpenCard, startTimer } from '../store/actions';
+import { handleOpenCard, startGame } from '../store/actions';
 import getThemeImageUrls from '../utils/getThemeImageUrls';
 
 import Card from './Card';
@@ -22,7 +22,7 @@ export type CardContainerProps = {
   gameState: GameState;
   theme: string;
   handleOpenCard: typeof handleOpenCard;
-  startTimer: typeof startTimer;
+  startGame: typeof startGame;
 };
 
 const mapStateToProps = (state: State) => ({
@@ -32,17 +32,17 @@ const mapStateToProps = (state: State) => ({
   theme: getTheme(state)
 });
 
-const mapDispatchToProps = { handleOpenCard, startTimer };
+const mapDispatchToProps = { handleOpenCard, startGame };
 
 class CardContainer extends React.PureComponent<CardContainerProps> {
   timer: NodeJS.Timeout | null = null;
 
   handleClick = () => {
-    const { card, openCards, gameState, startTimer } = this.props;
+    const { card, openCards, gameState, startGame } = this.props;
     if (openCards.length < 2)
       this.props.handleOpenCard(card.cardId);
     if (gameState === GameState.START) {
-      startTimer();
+      startGame();
     }
   };
 

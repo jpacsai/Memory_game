@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import { State } from '../store';
 import { GameState } from '../types';
 import { getGameState } from './../store/selectors';
-import { restart, pauseTimer, restartTimer } from '../store/actions';
+import { restart, clearTimer, startTimer } from '../store/actions';
 
 import PauseModal from './PauseModal';
 import RestartModal from './RestartModal';
@@ -18,8 +18,8 @@ export enum OpenModal {
 export type DashboardButtonsProps = {
   gameState: GameState;
   restart: typeof restart;
-  pauseTimer: typeof pauseTimer;
-  restartTimer: typeof restartTimer;
+  clearTimer: typeof clearTimer;
+  startTimer: typeof startTimer;
 };
 
 export type DashboardButtonsState = {
@@ -30,7 +30,7 @@ const mapStateToProps = (state: State) => ({
   gameState: getGameState(state)
 });
 
-const mapDispatchToProps = { restart, pauseTimer, restartTimer };
+const mapDispatchToProps = { restart, clearTimer, startTimer };
 
 class DashboardButtons extends React.PureComponent<DashboardButtonsProps> {
   state = {
@@ -38,12 +38,12 @@ class DashboardButtons extends React.PureComponent<DashboardButtonsProps> {
   };
 
   handleOpenRestartModal = () => {
-    this.props.pauseTimer();
+    this.props.clearTimer();
     this.setState({ openModal: OpenModal.RESTART });
   };
 
   handleCloseRestartModal = () => {
-    this.props.restartTimer();
+    this.props.startTimer();
     this.setState({ openModal: null });
   };
 
@@ -55,18 +55,18 @@ class DashboardButtons extends React.PureComponent<DashboardButtonsProps> {
   };
 
   handlePause = () => {
-    const { gameState, pauseTimer, restartTimer } = this.props;
+    const { gameState, clearTimer, startTimer } = this.props;
     if (gameState === GameState.START || gameState === GameState.END) return;
     else if (
       gameState === GameState.GAME &&
       this.state.openModal !== OpenModal.PAUSE
     ) {
       this.setState({ openModal: OpenModal.PAUSE });
-      pauseTimer();
+      clearTimer();
       return;
     }
     this.setState({ openModal: null });
-    restartTimer();
+    startTimer();
   };
 
   render() {
